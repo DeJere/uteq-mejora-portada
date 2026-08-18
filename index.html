@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UTEQ · Universidad Técnica Estatal de Quevedo — Mejora de portada</title>
+<meta name="description" content="Mejora visual y de organización de la página institucional uteq.edu.ec, manteniendo únicamente el contenido que el sitio gestiona actualmente.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ============================================================================
+   UTEQ — Mejora de la página principal institucional (uteq.edu.ec)
+   Solo contenido real que el sitio gestiona: La Universidad, Admisión, Carreras,
+   Posgrado, Investigación, Vinculación, Bienestar Universitario, Transparencia,
+   Contacto. Sin perfil, sin cursos, sin cifras de dinero.
+   Colores oficiales: Verde #1b7505 · Negro institucional #0d1910 · Dorado #dba112
+   ============================================================================ */
+:root{
+  --green:#1b7505; --green-light:#279c09; --green-dark:#0d1910; --green-mid:#11340a;
+  --gold:#dba112; --gray:#a8a8a7; --gray-light:#f4f6f5; --text:#1c211d; --text-soft:#5b655e;
+  --border:#e4e8e5; --radius:14px; --radius-sm:9px;
+  --shadow:0 1px 3px rgba(13,25,16,.07), 0 8px 22px rgba(13,25,16,.07);
+  --shadow-lg:0 14px 40px rgba(13,25,16,.22);
+  --transition:.2s cubic-bezier(.4,0,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+html.a11y-contrast{filter:contrast(1.15) saturate(1.1);}
+html.a11y-underline a{text-decoration:underline !important;}
+html.a11y-big{font-size:112.5%;}
+body{margin:0;font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;color:var(--text);background:#fff;-webkit-font-smoothing:antialiased;}
+p{margin:0;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:pointer;}
+ul{margin:0;padding:0;list-style:none;}
+h1,h2,h3{margin:0;line-height:1.2;}
+.icon{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;}
+:focus-visible{outline:2.5px solid var(--gold);outline-offset:2px;}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px;}
+@media(max-width:640px){.wrap{padding:0 16px;}}
+.skip-link{position:absolute;left:-999px;top:0;background:var(--green-dark);color:#fff;padding:12px 18px;z-index:999;border-radius:0 0 8px 0;font-weight:700;font-size:13px;}
+.skip-link:focus{left:0;}
+
+/* ---------- Barra superior negra (utilitaria, igual al sitio actual) ---------- */
+.bar-top{background:var(--green-dark);color:#cfe3cc;font-size:11.5px;}
+.bar-top .wrap{display:flex;align-items:center;gap:4px;height:34px;overflow-x:auto;}
+.bar-top a,.bar-top button{display:flex;align-items:center;gap:6px;color:#cfe3cc;font-weight:700;background:none;border:0;padding:6px 10px;border-radius:6px;white-space:nowrap;font-size:11.3px;}
+.bar-top a:hover,.bar-top button:hover{background:rgba(255,255,255,.1);color:#fff;}
+.bar-top .spacer{flex:1;}
+.bar-top .langs{display:flex;gap:2px;}
+.bar-top .langs button{padding:5px 8px;font-weight:800;}
+.bar-top .langs button.active{color:var(--gold);}
+
+/* ---------- Barra verde: logo + institucional ---------- */
+.bar-green{background:var(--green);color:#fff;}
+.bar-green .wrap{display:flex;align-items:center;gap:20px;height:74px;}
+.logo-link{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.logo-mark{width:42px;height:42px;flex-shrink:0;}
+.logo-text{line-height:1.15;}
+.logo-text b{display:block;font-size:19px;font-weight:800;letter-spacing:.4px;}
+.logo-text span{display:block;font-size:10px;font-weight:600;color:#d6ecd3;}
+.bar-green-links{display:flex;align-items:center;gap:4px;flex:1;justify-content:center;flex-wrap:wrap;}
+.bar-green-links a{padding:8px 12px;border-radius:8px;font-size:12.8px;font-weight:700;}
+.bar-green-links a:hover{background:rgba(255,255,255,.14);}
+.green-search{display:flex;align-items:center;background:#fff;border-radius:9px;overflow:hidden;flex-shrink:0;}
+.green-search input{border:0;padding:9px 10px;font-size:12.5px;width:160px;outline:none;}
+.green-search button{background:var(--green-dark);border:0;color:#fff;width:38px;height:36px;display:flex;align-items:center;justify-content:center;}
+.green-search button:hover{background:#000;}
+@media(max-width:980px){.bar-green-links{display:none;}.green-search input{width:120px;}}
+
+/* ---------- Barra blanca: menú principal ---------- */
+.site-header{position:sticky;top:0;z-index:80;background:#fff;box-shadow:0 1px 0 var(--border);}
+.main-nav{display:flex;align-items:center;height:56px;gap:2px;}
+.nav-item{position:relative;}
+.nav-top-btn{display:flex;align-items:center;gap:5px;padding:10px 13px;border-radius:8px;background:none;border:0;font-size:12.8px;font-weight:700;color:var(--text);}
+.nav-top-btn:hover{color:var(--green);}
+.nav-item.open .nav-top-btn{color:var(--green);}
+.nav-top-btn .chev{width:13px;height:13px;color:var(--text-soft);transition:transform var(--transition);}
+.nav-item.open .chev{transform:rotate(180deg);}
+.mega{position:absolute;top:calc(100% + 8px);left:0;min-width:250px;background:#fff;border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow-lg);padding:7px;opacity:0;transform:translateY(-8px);pointer-events:none;transition:all .18s ease;z-index:10;}
+.nav-item.open .mega{opacity:1;transform:translateY(0);pointer-events:auto;}
+.mega a,.mega button{display:flex;width:100%;align-items:center;gap:9px;padding:9px 11px;border-radius:8px;font-size:12.6px;font-weight:600;color:var(--text);background:none;border:0;text-align:left;}
+.mega a:hover,.mega button:hover{background:var(--gray-light);color:var(--green);}
+.mega a .icon,.mega button .icon{width:15px;height:15px;color:var(--green);}
+.hamburger{display:none;background:var(--gray-light);border:0;width:38px;height:38px;border-radius:9px;align-items:center;justify-content:center;color:var(--text);margin-left:auto;}
+@media(max-width:980px){.main-nav{display:none;}}
+.header-mobile-row{display:none;align-items:center;justify-content:flex-end;padding:10px 0;}
+@media(max-width:980px){.header-mobile-row{display:flex;}}
+
+/* mobile drawer */
+.mobile-overlay{position:fixed;inset:0;background:rgba(9,17,10,.55);z-index:190;opacity:0;pointer-events:none;transition:opacity var(--transition);}
+.mobile-overlay.show{opacity:1;pointer-events:auto;}
+.mobile-drawer{position:fixed;top:0;right:0;bottom:0;width:86%;max-width:340px;background:#fff;z-index:200;transform:translateX(100%);transition:transform var(--transition);box-shadow:var(--shadow-lg);overflow-y:auto;}
+.mobile-drawer.open{transform:translateX(0);}
+.mobile-drawer-head{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid var(--border);}
+.mobile-drawer-head b{font-size:14px;}
+.mobile-drawer-head button{background:var(--gray-light);border:0;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.m-acc-item{border-bottom:1px solid var(--border);}
+.m-acc-head{display:flex;align-items:center;width:100%;padding:14px 18px;background:none;border:0;font-size:13px;font-weight:700;text-align:left;}
+.m-acc-head .chev{margin-left:auto;transition:transform var(--transition);color:var(--text-soft);}
+.m-acc-item.open .chev{transform:rotate(180deg);}
+.m-acc-body{max-height:0;overflow:hidden;transition:max-height var(--transition);}
+.m-acc-item.open .m-acc-body{max-height:240px;}
+.m-acc-body a{display:block;padding:9px 18px 9px 26px;font-size:12.3px;color:var(--text-soft);font-weight:600;}
+.m-acc-body a:hover{color:var(--green);}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;color:#fff;overflow:hidden;min-height:340px;display:flex;align-items:center;background:#0d1910;}
+.hero::before{content:"";position:absolute;inset:-8px;background-image:var(--bimg);background-size:cover;background-position:center 30%;filter:blur(1.5px) brightness(.62) saturate(1.05);transform:scale(1.04);}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(13,25,16,.92) 15%,rgba(13,25,16,.62) 45%,rgba(27,117,5,.38) 100%);}
+.hero-inner{position:relative;z-index:1;padding:60px 0;max-width:640px;}
+
+/* banners con foto real difuminada por sección */
+.section-banner{border-radius:var(--radius);overflow:hidden;display:flex;align-items:center;gap:22px;margin-bottom:26px;padding:0 30px;min-height:170px;color:#fff;position:relative;isolation:isolate;}
+.section-banner::before{content:"";position:absolute;inset:-6px;z-index:-2;background-image:var(--bimg);background-size:cover;background-position:center;filter:blur(2px) brightness(.6);transform:scale(1.04);}
+.section-banner::after{content:"";position:absolute;inset:0;z-index:-1;background:var(--boverlay,linear-gradient(120deg,rgba(13,25,16,.86),rgba(27,117,5,.5)));}
+.section-banner .sb-text{position:relative;max-width:400px;}
+.section-banner .sb-text b{font-size:15px;font-weight:800;display:block;margin-bottom:6px;text-shadow:0 1px 4px rgba(0,0,0,.3);}
+.section-banner .sb-text span{font-size:12px;color:rgba(255,255,255,.92);line-height:1.55;display:block;}
+.section-banner .sb-illus{margin-left:auto;width:170px;height:140px;flex-shrink:0;position:relative;}
+@media(max-width:760px){.section-banner{text-align:center;padding:26px 22px;flex-direction:column;gap:12px;}.section-banner .sb-text{max-width:none;}.section-banner .sb-illus{margin:0;width:130px;height:110px;}}
+/* variantes ilustradas (sin foto) para secciones que no piden foto real */
+.section-banner.sb-bienestar::before,.section-banner.sb-transparencia::before{content:none;}
+.section-banner.sb-bienestar::after{background:linear-gradient(120deg,#0d1910,#145804 140%);}
+.section-banner.sb-transparencia::after{background:linear-gradient(120deg,#1b7505,#0d1910 140%);}
+
+.fac-top{position:relative;isolation:isolate;background-color:#0d1910;}
+.fac-top::before{content:"";position:absolute;inset:0;z-index:-2;background-image:url('https://www.uteq.edu.ec/assets/images/front-pages/img-frontpg-faculty.jpg');background-size:cover;background-position:center;filter:blur(1px) brightness(.65);}
+.fac-top::after{content:"";position:absolute;inset:0;z-index:-1;background:var(--ftint);}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:5px 12px;border-radius:20px;font-size:11px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+.hero h1{font-size:clamp(26px,4vw,38px);font-weight:800;margin-bottom:14px;}
+.hero p.lead{font-size:14px;color:#dcefda;line-height:1.6;margin-bottom:24px;max-width:520px;}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;}
+.btn{display:inline-flex;align-items:center;gap:7px;padding:10px 17px;border-radius:9px;border:0;font-size:13px;font-weight:800;transition:filter var(--transition),transform var(--transition);}
+.btn:active{transform:scale(.97);}
+.btn-gold{background:var(--gold);color:#3a2a03;}
+.btn-gold:hover{filter:brightness(1.06);}
+.btn-primary{background:var(--green);color:#fff;}
+.btn-primary:hover{filter:brightness(1.1);}
+.btn-outline{background:#fff;color:var(--green-dark);border:1.5px solid var(--border);}
+.btn-outline:hover{border-color:var(--green);color:var(--green);}
+.btn-outline-inv{background:rgba(255,255,255,.08);color:#fff;border:1.5px solid rgba(255,255,255,.5);}
+.btn-outline-inv:hover{background:rgba(255,255,255,.18);}
+.btn-sm{padding:8px 13px;font-size:12px;}
+
+/* ---------- cifras ---------- */
+.stats-strip{background:var(--gray-light);border-bottom:1px solid var(--border);}
+.stats-row{display:grid;grid-template-columns:repeat(5,1fr);gap:0;}
+@media(max-width:760px){.stats-row{grid-template-columns:repeat(2,1fr);}}
+.stat-box{padding:22px 10px;text-align:center;border-right:1px solid var(--border);}
+.stat-box:last-child{border-right:0;}
+.stat-box b{font-size:23px;font-weight:800;color:var(--green-dark);display:block;}
+.stat-box span{font-size:10.3px;color:var(--text-soft);font-weight:700;}
+
+/* ---------- Sections ---------- */
+.section{padding:52px 0;}
+.section-alt{background:var(--gray-light);}
+.section-head{margin-bottom:26px;}
+.section-head .eyebrow{font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--green);margin-bottom:5px;display:block;}
+.section-head h2{font-size:22px;font-weight:800;}
+.section-head p{font-size:12.8px;color:var(--text-soft);margin-top:6px;max-width:560px;}
+
+.card-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+@media(max-width:900px){.card-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:560px){.card-grid{grid-template-columns:1fr;}}
+.info-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:19px;box-shadow:var(--shadow);transition:transform var(--transition),box-shadow var(--transition),border-color var(--transition);text-align:left;width:100%;}
+.info-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:var(--green);}
+.info-card .ic{width:40px;height:40px;border-radius:11px;background:#eaf4e8;color:var(--green);display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
+.info-card b{font-size:13px;display:block;margin-bottom:5px;}
+.info-card p{font-size:11.6px;color:var(--text-soft);line-height:1.5;}
+
+.fac-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;}
+@media(max-width:900px){.fac-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:560px){.fac-grid{grid-template-columns:1fr;}}
+.fac-card{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:transform var(--transition);}
+.fac-card:hover{transform:translateY(-3px);}
+.fac-top{padding:20px 16px;color:#fff;min-height:96px;display:flex;flex-direction:column;justify-content:flex-end;}
+.fac-top .icon{width:24px;height:24px;margin-bottom:20px;}
+.fac-top b{font-size:12.8px;display:block;}
+.fac-bottom{background:#fff;border:1px solid var(--border);border-top:0;padding:12px 16px;font-size:11.3px;color:var(--text-soft);font-weight:700;}
+
+.link-row{display:flex;justify-content:center;margin-top:24px;}
+
+/* ---------- Contacto ---------- */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;}
+@media(max-width:900px){.contact-grid{grid-template-columns:1fr;}}
+.contact-list li{display:flex;gap:12px;padding:12px 0;border-bottom:1px dashed var(--border);}
+.contact-list li:last-child{border-bottom:0;}
+.contact-list .ic{width:36px;height:36px;border-radius:10px;background:#eaf4e8;color:var(--green);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.contact-list b{font-size:12.6px;display:block;}
+.contact-list span,.contact-list a{font-size:11.8px;color:var(--text-soft);}
+.contact-list a:hover{color:var(--green);}
+.field{margin-bottom:13px;}
+.field label{display:block;font-size:11.6px;font-weight:700;margin-bottom:5px;}
+.field input,.field select,.field textarea{width:100%;padding:9px 11px;border-radius:8px;border:1.5px solid var(--border);font-size:12.8px;font-family:inherit;}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--green);outline:none;}
+.field textarea{min-height:80px;resize:vertical;}
+.field.invalid input,.field.invalid textarea{border-color:#c0392b;}
+.field .err{display:none;font-size:10.6px;color:#c0392b;margin-top:4px;font-weight:700;}
+.field.invalid .err{display:block;}
+
+/* ---------- footer ---------- */
+.site-footer{background:var(--green-mid);color:#cfe3cc;padding:40px 0 18px;}
+.footer-grid{display:grid;grid-template-columns:1.3fr repeat(4,1fr);gap:22px;margin-bottom:28px;}
+@media(max-width:980px){.footer-grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:620px){.footer-grid{grid-template-columns:repeat(2,1fr);}}
+.footer-grid h3{font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:#fff;margin-bottom:12px;}
+.footer-grid ul li{margin-bottom:8px;}
+.footer-grid a{font-size:11.8px;color:#b7d4b3;}
+.footer-grid a:hover{color:var(--gold);}
+.footer-brand p{font-size:11.5px;color:#b7d4b3;line-height:1.6;margin:10px 0 14px;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.12);padding-top:16px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:10.8px;color:#9fc09a;}
+.footer-bottom a{color:#9fc09a;font-weight:700;}
+.footer-bottom a:hover{color:var(--gold);}
+
+/* ---------- Floating widgets ---------- */
+.fab-stack{position:fixed;bottom:20px;right:20px;z-index:120;display:flex;flex-direction:column;gap:10px;align-items:flex-end;}
+.fab{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-lg);border:0;color:#fff;position:relative;}
+.fab-a11y{background:var(--green);}
+.fab-a11y:hover{filter:brightness(1.08);}
+.fab-chat{background:var(--green-dark);}
+.fab-chat:hover{filter:brightness(1.2);}
+.fab-chat .dot{position:absolute;top:1px;right:1px;width:12px;height:12px;border-radius:50%;background:var(--gold);border:2px solid #fff;}
+
+.a11y-panel{position:fixed;bottom:82px;right:20px;width:250px;background:#fff;border-radius:14px;box-shadow:var(--shadow-lg);z-index:120;padding:14px;opacity:0;transform:translateY(10px) scale(.97);pointer-events:none;transition:all .2s ease;}
+.a11y-panel.show{opacity:1;transform:translateY(0) scale(1);pointer-events:auto;}
+.a11y-panel b{font-size:12.5px;display:block;margin-bottom:10px;}
+.a11y-row{display:flex;align-items:center;justify-content:space-between;padding:7px 0;font-size:12px;font-weight:600;border-top:1px solid var(--border);}
+.a11y-row:first-of-type{border-top:0;}
+.a11y-toggle{width:38px;height:22px;border-radius:20px;background:var(--gray-light);border:1.5px solid var(--border);position:relative;flex-shrink:0;}
+.a11y-toggle::after{content:"";position:absolute;top:2px;left:2px;width:15px;height:15px;border-radius:50%;background:var(--gray);transition:all var(--transition);}
+.a11y-toggle.on{background:#eaf4e8;border-color:var(--green);}
+.a11y-toggle.on::after{transform:translateX(16px);background:var(--green);}
+.a11y-textsize{display:flex;gap:6px;}
+.a11y-textsize button{width:26px;height:26px;border-radius:7px;background:var(--gray-light);border:1px solid var(--border);font-weight:800;font-size:12px;}
+.a11y-textsize button:hover{background:#e6eae7;}
+
+.chat-panel{position:fixed;bottom:82px;right:20px;width:320px;max-width:calc(100vw - 32px);max-height:66vh;background:#fff;border-radius:16px;box-shadow:var(--shadow-lg);z-index:120;display:flex;flex-direction:column;overflow:hidden;opacity:0;transform:translateY(12px) scale(.97);pointer-events:none;transition:all .2s ease;}
+.chat-panel.show{opacity:1;transform:translateY(0) scale(1);pointer-events:auto;}
+.chat-head{background:var(--green-dark);color:#fff;padding:13px 15px;display:flex;align-items:center;gap:9px;}
+.chat-head .av{width:32px;height:32px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.chat-head b{font-size:12.5px;display:block;}
+.chat-head span{font-size:10px;color:#b7d4b3;}
+.chat-head button{margin-left:auto;background:rgba(255,255,255,.12);border:0;width:26px;height:26px;border-radius:50%;color:#fff;display:flex;align-items:center;justify-content:center;}
+.chat-body{flex:1;overflow-y:auto;padding:13px;display:flex;flex-direction:column;gap:9px;background:var(--gray-light);}
+.chat-msg{max-width:85%;padding:9px 12px;border-radius:12px;font-size:12.2px;line-height:1.5;}
+.chat-msg.bot{background:#fff;border:1px solid var(--border);align-self:flex-start;border-bottom-left-radius:3px;}
+.chat-msg.user{background:var(--green);color:#fff;align-self:flex-end;border-bottom-right-radius:3px;}
+.chat-chips{display:flex;flex-wrap:wrap;gap:6px;padding:10px 13px;background:var(--gray-light);border-top:1px solid var(--border);}
+.chat-chip{background:#fff;border:1.5px solid var(--border);padding:6px 10px;border-radius:20px;font-size:10.6px;font-weight:700;color:var(--green);}
+.chat-chip:hover{background:#eaf4e8;}
+.chat-typing{display:flex;gap:4px;align-self:flex-start;background:#fff;border:1px solid var(--border);padding:11px 13px;border-radius:12px;border-bottom-left-radius:3px;}
+.chat-typing span{width:6px;height:6px;border-radius:50%;background:var(--gray);animation:chatdot 1s infinite ease-in-out;}
+.chat-typing span:nth-child(2){animation-delay:.15s;}
+.chat-typing span:nth-child(3){animation-delay:.3s;}
+@keyframes chatdot{0%,60%,100%{opacity:.3;transform:translateY(0);}30%{opacity:1;transform:translateY(-3px);}}
+.chat-input-row{display:flex;gap:8px;padding:11px 13px;border-top:1px solid var(--border);background:#fff;}
+.chat-input-row input{flex:1;border:1.5px solid var(--border);border-radius:20px;padding:9px 14px;font-size:12.3px;font-family:inherit;outline:none;}
+.chat-input-row input:focus{border-color:var(--green);}
+.chat-input-row button{width:36px;height:36px;border-radius:50%;background:var(--green);border:0;color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.chat-input-row button:hover{filter:brightness(1.1);}
+.chat-input-row button:disabled{opacity:.4;cursor:not-allowed;}
+
+.toast-container{position:fixed;bottom:20px;left:20px;z-index:300;display:flex;flex-direction:column;gap:10px;max-width:300px;}
+.toast{background:var(--green-dark);color:#fff;padding:11px 14px;border-radius:10px;display:flex;align-items:flex-start;gap:8px;box-shadow:var(--shadow-lg);font-size:12px;font-weight:600;}
+.toast .icon{color:var(--gold);flex-shrink:0;width:15px;height:15px;margin-top:1px;}
+
+/* modal simple */
+.modal-backdrop{position:fixed;inset:0;background:rgba(9,17,10,.55);z-index:250;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .2s ease;}
+.modal-backdrop.show{opacity:1;pointer-events:auto;}
+.modal-box{background:#fff;border-radius:14px;width:100%;max-width:400px;box-shadow:var(--shadow-lg);padding:22px;position:relative;}
+.modal-box .close-x{position:absolute;top:12px;right:12px;background:var(--gray-light);border:0;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.modal-box h3{font-size:15px;font-weight:800;margin-bottom:8px;}
+.modal-box p{font-size:12.3px;color:var(--text-soft);line-height:1.6;}
+</style>
+</head>
+<body>
+<a href="#contenido" class="skip-link">Saltar al contenido principal</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+<defs>
+<symbol id="ic-menu" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></symbol>
+<symbol id="ic-close" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
+<symbol id="ic-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></symbol>
+<symbol id="ic-map" viewBox="0 0 24 24"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></symbol>
+<symbol id="ic-mail" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M22 6l-10 7L2 6"/></symbol>
+<symbol id="ic-graduate" viewBox="0 0 24 24"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></symbol>
+<symbol id="ic-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></symbol>
+<symbol id="ic-library" viewBox="0 0 24 24"><path d="M4 21V8l8-5 8 5v13"/><path d="M9 21v-8h6v8"/></symbol>
+<symbol id="ic-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3.1-8.7A2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .3 2 .6 2.9a2 2 0 01-.4 2.1L8 10a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.9.5 2.9.6a2 2 0 011.7 2.1z"/></symbol>
+<symbol id="ic-chevron-down" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></symbol>
+<symbol id="ic-flask" viewBox="0 0 24 24"><path d="M9 2v6L3 20a1 1 0 001 2h16a1 1 0 001-2L15 8V2"/><line x1="9" y1="2" x2="15" y2="2"/><line x1="8" y1="15" x2="16" y2="15"/></symbol>
+<symbol id="ic-handshake" viewBox="0 0 24 24"><path d="M11 17l-3-3-4 4"/><path d="M14 14l3 3 4-4"/><path d="M2 13l4-4 4 3 3-3 3 3 4-4 2 2"/></symbol>
+<symbol id="ic-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20 15.3 15.3 0 010-20z"/></symbol>
+<symbol id="ic-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></symbol>
+<symbol id="ic-heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 00-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z"/></symbol>
+<symbol id="ic-shield" viewBox="0 0 24 24"><path d="M12 2l8 3.6v5.2c0 5-3.4 8.9-8 10.2-4.6-1.3-8-5.2-8-10.2V5.6L12 2z"/><polyline points="9 12 11 14 15 10"/></symbol>
+<symbol id="ic-clipboard" viewBox="0 0 24 24"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/></symbol>
+<symbol id="ic-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></symbol>
+<symbol id="ic-home" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></symbol>
+<symbol id="ic-key" viewBox="0 0 24 24"><path d="M21 2l-9.6 9.6"/><circle cx="7.5" cy="16.5" r="5.5"/><path d="M15.5 7.5L18 5l3 3-2.5 2.5M14 9l3 3"/></symbol>
+<symbol id="ic-tool" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></symbol>
+<symbol id="ic-bot" viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="12" rx="3"/><circle cx="9" cy="14" r="1.3" fill="currentColor" stroke="none"/><circle cx="15" cy="14" r="1.3" fill="currentColor" stroke="none"/><line x1="12" y1="8" x2="12" y2="3"/><circle cx="12" cy="2.3" r="1" fill="currentColor" stroke="none"/></symbol>
+<symbol id="ic-eye" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="ic-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></symbol>
+<symbol id="ic-facebook" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></symbol>
+<symbol id="ic-instagram" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/></symbol>
+<symbol id="ic-youtube" viewBox="0 0 24 24"><path d="M22.5 8.5s-.2-1.6-.8-2.3c-.8-.9-1.7-.9-2.1-1C16.9 5 12 5 12 5h0s-4.9 0-7.6.2c-.4.1-1.3.1-2.1 1-.6.7-.8 2.3-.8 2.3S1.3 10.4 1.3 12.3v1.8c0 1.9.2 3.8.2 3.8s.2 1.6.8 2.3c.8.9 1.9.9 2.4 1 1.7.2 7.3.2 7.3.2s4.9 0 7.6-.2c.4-.1 1.3-.1 2.1-1 .6-.7.8-2.3.8-2.3s.2-1.9.2-3.8v-1.8c0-1.9-.2-3.8-.2-3.8z"/></symbol>
+<symbol id="ic-send" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></symbol>
+<symbol id="ic-pin" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+</defs>
+</svg>
+
+<!-- ===== BARRA SUPERIOR ===== -->
+<div class="bar-top">
+  <div class="wrap">
+    <a href="#footer-sitemap"><svg class="icon" style="width:13px;height:13px"><use href="#ic-map"/></svg>Mapa del sitio</a>
+    <button data-info="sga"><svg class="icon" style="width:13px;height:13px"><use href="#ic-key"/></svg>SGA</button>
+    <button data-info="sagest"><svg class="icon" style="width:13px;height:13px"><use href="#ic-tool"/></svg>SAGEST</button>
+    <a href="#admision" style="color:var(--gold);"><svg class="icon" style="width:13px;height:13px"><use href="#ic-graduate"/></svg>Postúlate</a>
+    <button data-info="correo"><svg class="icon" style="width:13px;height:13px"><use href="#ic-mail"/></svg>Institucional</button>
+    <div class="spacer"></div>
+    <div class="langs" role="group" aria-label="Idioma">
+      <button data-lang="en">EN</button>
+      <button data-lang="es" class="active" aria-current="true">ES</button>
+      <button data-lang="pt">PT</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== BARRA VERDE ===== -->
+<div class="bar-green">
+  <div class="wrap">
+    <a href="#inicio" class="logo-link" aria-label="UTEQ, ir al inicio">
+      <svg class="logo-mark" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 2l8 3.6v5.2c0 5-3.4 8.9-8 10.2-4.6-1.3-8-5.2-8-10.2V5.6L12 2z" fill="#fff"/>
+        <path d="M12 4.3L6 7v4c0 3.6 2.4 6.6 6 7.7 3.6-1.1 6-4.1 6-7.7V7l-6-2.7z" fill="#0d1910"/>
+        <text x="12" y="14.6" font-family="Manrope,Arial" font-weight="800" font-size="8.4" fill="#dba112" text-anchor="middle">U</text>
+      </svg>
+      <span class="logo-text"><b>UTEQ</b><span>Universidad Técnica Estatal de Quevedo</span></span>
+    </a>
+    <nav class="bar-green-links" aria-label="Enlaces institucionales">
+      <a href="https://biblioteca.uteq.edu.ec/" target="_blank" rel="noopener">Biblioteca</a>
+      <a href="#internacional">Cooperación Internacional</a>
+      <button data-info="comunicacion">Comunicación</button>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <form class="green-search" id="greenSearchForm" role="search">
+      <label for="greenSearch" class="sr-only">Buscar en el sitio</label>
+      <input type="text" id="greenSearch" placeholder="Buscar en uteq.edu.ec...">
+      <button type="submit" aria-label="Buscar"><svg class="icon" style="width:15px;height:15px"><use href="#ic-search"/></svg></button>
+    </form>
+  </div>
+</div>
+
+<!-- ===== BARRA BLANCA: MENÚ PRINCIPAL ===== -->
+<header class="site-header">
+  <div class="wrap">
+    <div class="header-mobile-row">
+      <button class="hamburger" id="openDrawer" aria-label="Abrir menú de navegación"><svg class="icon"><use href="#ic-menu"/></svg></button>
+    </div>
+    <nav class="main-nav" aria-label="Menú principal">
+      <div class="nav-item" data-nav-item>
+        <button class="nav-top-btn" aria-expanded="false" aria-haspopup="true">La Universidad<svg class="icon chev"><use href="#ic-chevron-down"/></svg></button>
+        <div class="mega" role="menu">
+          <a href="#universidad" role="menuitem"><svg class="icon"><use href="#ic-shield"/></svg>Autoridades y administración</a>
+          <a href="#universidad" role="menuitem"><svg class="icon"><use href="#ic-clipboard"/></svg>Normativa institucional</a>
+          <a href="#universidad" role="menuitem"><svg class="icon"><use href="#ic-file"/></svg>Planificación estratégica</a>
+        </div>
+      </div>
+      <div class="nav-item"><a class="nav-top-btn" href="#admision">Admisión</a></div>
+      <div class="nav-item"><a class="nav-top-btn" href="#carreras">Carreras</a></div>
+      <div class="nav-item" data-nav-item>
+        <button class="nav-top-btn" aria-expanded="false" aria-haspopup="true">Posgrado<svg class="icon chev"><use href="#ic-chevron-down"/></svg></button>
+        <div class="mega" role="menu">
+          <a href="https://www.uteq.edu.ec/es/posgrado" target="_blank" rel="noopener" role="menuitem"><svg class="icon"><use href="#ic-graduate"/></svg>Maestrías vigentes</a>
+          <a href="https://www.uteq.edu.ec/es/posgrado" target="_blank" rel="noopener" role="menuitem"><svg class="icon"><use href="#ic-file"/></svg>Requisitos de inscripción</a>
+        </div>
+      </div>
+      <div class="nav-item" data-nav-item>
+        <button class="nav-top-btn" aria-expanded="false" aria-haspopup="true">Investigación<svg class="icon chev"><use href="#ic-chevron-down"/></svg></button>
+        <div class="mega" role="menu">
+          <a href="https://www.uteq.edu.ec/es/investigacion" target="_blank" rel="noopener" role="menuitem"><svg class="icon"><use href="#ic-flask"/></svg>CIDU</a>
+          <a href="https://www.uteq.edu.ec/es/investigacion/proyectos" target="_blank" rel="noopener" role="menuitem"><svg class="icon"><use href="#ic-clipboard"/></svg>Proyectos</a>
+          <a href="https://www.uteq.edu.ec/es/investigacion/produccion-cientifica" target="_blank" rel="noopener" role="menuitem"><svg class="icon"><use href="#ic-book"/></svg>Producción científica</a>
+        </div>
+      </div>
+      <div class="nav-item" data-nav-item>
+        <button class="nav-top-btn" aria-expanded="false" aria-haspopup="true">Vinculación<svg class="icon chev"><use href="#ic-chevron-down"/></svg></button>
+        <div class="mega" role="menu">
+          <a href="#vinculacion" role="menuitem"><svg class="icon"><use href="#ic-handshake"/></svg>Convenios</a>
+          <a href="#vinculacion" role="menuitem"><svg class="icon"><use href="#ic-file"/></svg>Trámites de vinculación</a>
+          <a href="#vinculacion" role="menuitem"><svg class="icon"><use href="#ic-clipboard"/></svg>Seguimiento e informes</a>
+        </div>
+      </div>
+      <div class="nav-item" data-nav-item>
+        <button class="nav-top-btn" aria-expanded="false" aria-haspopup="true">Bienestar Universitario<svg class="icon chev"><use href="#ic-chevron-down"/></svg></button>
+        <div class="mega" role="menu">
+          <a href="#bienestar" role="menuitem"><svg class="icon"><use href="#ic-heart"/></svg>Servicios estudiantiles</a>
+          <a href="#bienestar" role="menuitem"><svg class="icon"><use href="#ic-users"/></svg>Ayudas económicas y ergonómicas</a>
+          <a href="#bienestar" role="menuitem"><svg class="icon"><use href="#ic-home"/></svg>Arrendamientos</a>
+          <a href="#bienestar" role="menuitem"><svg class="icon"><use href="#ic-clipboard"/></svg>Planificación de actividades</a>
+        </div>
+      </div>
+      <div class="nav-item" data-nav-item>
+        <button class="nav-top-btn" aria-expanded="false" aria-haspopup="true">Transparencia<svg class="icon chev"><use href="#ic-chevron-down"/></svg></button>
+        <div class="mega" role="menu">
+          <a href="#transparencia" role="menuitem"><svg class="icon"><use href="#ic-shield"/></svg>LOTAIP</a>
+          <a href="#transparencia" role="menuitem"><svg class="icon"><use href="#ic-check"/></svg>Rendición de cuentas</a>
+          <a href="#transparencia" role="menuitem"><svg class="icon"><use href="#ic-clipboard"/></svg>Datos institucionales</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- Mobile drawer -->
+<div class="mobile-overlay" id="mobileOverlay"></div>
+<nav class="mobile-drawer" id="mobileDrawer" aria-label="Menú móvil">
+  <div class="mobile-drawer-head"><b>Menú UTEQ</b><button id="closeDrawer" aria-label="Cerrar menú"><svg class="icon" style="width:16px;height:16px"><use href="#ic-close"/></svg></button></div>
+  <div id="mAccordion"></div>
+</nav>
+
+<main id="contenido">
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="inicio" style="--bimg:url('https://www.uteq.edu.ec/assets/images/front-pages/imagen_uteq_es.jpg');">
+    <div class="wrap hero-inner">
+      <span class="hero-eyebrow"><svg class="icon" style="width:12px;height:12px"><use href="#ic-graduate"/></svg>Admisión 2026 · Segundo periodo</span>
+      <h1>Educación pública, inclusiva y de calidad al servicio de la sociedad</h1>
+      <p class="lead">La Universidad Técnica Estatal de Quevedo forma profesionales en más de 30 carreras, con una firme vocación de investigación y vinculación con la comunidad.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-gold" href="#admision">Postúlate ahora</a>
+        <a class="btn btn-outline-inv" href="#carreras">Explorar carreras</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CIFRAS ===== -->
+  <div class="stats-strip">
+    <div class="wrap stats-row">
+      <div class="stat-box"><b>13 517</b><span>Estudiantes de grado</span></div>
+      <div class="stat-box"><b>583</b><span>Docentes</span></div>
+      <div class="stat-box"><b>35</b><span>Carreras</span></div>
+      <div class="stat-box"><b>77</b><span>Proyectos de investigación</span></div>
+      <div class="stat-box"><b>122</b><span>Convenios de vinculación</span></div>
+    </div>
+  </div>
+
+  <!-- ===== LA UNIVERSIDAD ===== -->
+  <section class="section" id="universidad" aria-labelledby="h-uni">
+    <div class="wrap">
+      <div class="section-head"><span class="eyebrow">La Universidad</span><h2 id="h-uni">Institucionalidad y organización</h2><p>Autoridades, normativa y planificación que rigen la gestión de la UTEQ.</p></div>
+      <div class="section-banner" style="--bimg:url('https://www.uteq.edu.ec/assets/images/front-pages/imagen_historia_uteq_es.jpg');">
+        <div class="sb-text"><b>Gobierno universitario</b><span>Rectorado, vicerrectorados y decanatos trabajando bajo un marco normativo claro y público, con más de 45 años de trayectoria institucional.</span></div>
+      </div>
+      <div class="card-grid">
+        <button class="info-card" data-info="autoridades"><div class="ic"><svg class="icon"><use href="#ic-shield"/></svg></div><b>Autoridades</b><p>Rectorado, vicerrectorados y decanatos de las facultades.</p></button>
+        <button class="info-card" data-info="normativa"><div class="ic"><svg class="icon"><use href="#ic-clipboard"/></svg></div><b>Normativa institucional</b><p>Estatuto, reglamentos y resoluciones del Consejo Universitario.</p></button>
+        <button class="info-card" data-info="planificacion"><div class="ic"><svg class="icon"><use href="#ic-file"/></svg></div><b>Planificación estratégica</b><p>Plan estratégico institucional y planificación operativa anual.</p></button>
+        <button class="info-card" data-info="identidad"><div class="ic"><svg class="icon"><use href="#ic-book"/></svg></div><b>Identidad corporativa</b><p>Manual de marca, logotipos y lineamientos de comunicación.</p></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CARRERAS ===== -->
+  <section class="section section-alt" id="carreras" aria-labelledby="h-carreras">
+    <div class="wrap">
+      <div class="section-head"><span class="eyebrow">Admisión</span><h2 id="h-carreras">Todas las carreras</h2><p>Oferta académica organizada por facultad.</p></div>
+      <div class="fac-grid" id="admision">
+        <div class="fac-card"><div class="fac-top" style="--ftint:rgba(27,117,5,.72);"><svg class="icon"><use href="#ic-flask"/></svg><b>Ciencias Agropecuarias</b></div><div class="fac-bottom">Agroecología, Agronomía y afines</div></div>
+        <div class="fac-card"><div class="fac-top" style="--ftint:rgba(13,25,16,.78);"><svg class="icon"><use href="#ic-heart"/></svg><b>Ciencias Pecuarias</b></div><div class="fac-bottom">Veterinaria, Zootecnia, Acuicultura</div></div>
+        <div class="fac-card"><div class="fac-top" style="--ftint:rgba(39,156,9,.72);"><svg class="icon"><use href="#ic-file"/></svg><b>Ciencias Empresariales</b></div><div class="fac-bottom">Administración, Contabilidad, Turismo</div></div>
+        <div class="fac-card"><div class="fac-top" style="--ftint:rgba(219,161,18,.68);"><svg class="icon"><use href="#ic-globe"/></svg><b>Ciencias Ambientales</b></div><div class="fac-bottom">Biotecnología, Ing. Ambiental</div></div>
+        <div class="fac-card"><div class="fac-top" style="--ftint:rgba(20,88,4,.78);"><svg class="icon"><use href="#ic-tool"/></svg><b>Ciencias de la Ingeniería</b></div><div class="fac-bottom">Software, Civil, Industrial</div></div>
+      </div>
+      <div class="link-row">
+        <a class="btn btn-primary" href="https://www.uteq.edu.ec/es/grado/carreras" target="_blank" rel="noopener">Ver el detalle de todas las carreras</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== VINCULACIÓN ===== -->
+  <section class="section" id="vinculacion" aria-labelledby="h-vinc">
+    <div class="wrap">
+      <div class="section-head"><span class="eyebrow">Vinculación con la sociedad</span><h2 id="h-vinc">Convenios, trámites y seguimiento</h2><p>122 convenios activos conectan a la UTEQ con la comunidad, instituciones y empresas de la región.</p></div>
+      <div class="section-banner" style="--bimg:url('https://www.uteq.edu.ec/assets/images/front-pages/imagen_vinculacion_uteq_es.jpg');">
+        <div class="sb-text"><b>UTEQ junto a la comunidad</b><span>Proyectos y convenios que conectan a la universidad con instituciones, empresas y familias de Los Ríos.</span></div>
+      </div>
+      <div class="card-grid">
+        <button class="info-card" data-info="convenios"><div class="ic"><svg class="icon"><use href="#ic-handshake"/></svg></div><b>Convenios</b><p>Acuerdos vigentes con instituciones públicas y privadas.</p></button>
+        <button class="info-card" data-info="tramite-vinc"><div class="ic"><svg class="icon"><use href="#ic-file"/></svg></div><b>Trámites de vinculación</b><p>Solicitud y gestión de nuevos convenios o proyectos.</p></button>
+        <button class="info-card" data-info="seguimiento"><div class="ic"><svg class="icon"><use href="#ic-clipboard"/></svg></div><b>Seguimiento</b><p>Monitoreo del avance de proyectos y convenios activos.</p></button>
+        <button class="info-card" data-info="informes"><div class="ic"><svg class="icon"><use href="#ic-book"/></svg></div><b>Informes</b><p>Reportes anuales del Departamento de Vinculación.</p></button>
+      </div>
+      <div class="link-row"><a class="btn btn-outline" href="https://www.uteq.edu.ec/es/vinculacion" target="_blank" rel="noopener">Ir a Vinculación</a></div>
+    </div>
+  </section>
+
+  <!-- ===== BIENESTAR UNIVERSITARIO ===== -->
+  <section class="section section-alt" id="bienestar" aria-labelledby="h-bien">
+    <div class="wrap">
+      <div class="section-head"><span class="eyebrow">Bienestar Universitario</span><h2 id="h-bien">Servicios para la comunidad UTEQ</h2></div>
+      <div class="section-banner sb-bienestar">
+        <div class="sb-text"><b>Cuidamos a nuestra comunidad</b><span>Servicios de salud, becas, espacios y actividades pensadas para el bienestar integral del estudiante.</span></div>
+        <svg class="sb-illus" viewBox="0 0 190 150" aria-hidden="true">
+          <path d="M95 40c-16-20-52-6-46 20 5 22 46 48 46 48s41-26 46-48c6-26-30-40-46-20z" fill="#dba112" opacity=".9"/>
+          <circle cx="45" cy="115" r="14" fill="rgba(255,255,255,.85)"/>
+          <path d="M25 148c1.5-16 12-23 20-23s18.5 7 20 23z" fill="rgba(255,255,255,.85)"/>
+          <path d="M150 100c14-18 40-6 36 16-3 17-36 34-36 34s-33-17-36-34c-4-22 22-34 36-16z" fill="rgba(255,255,255,.35)"/>
+        </svg>
+      </div>
+      <div class="card-grid">
+        <button class="info-card" data-info="servicios-est"><div class="ic"><svg class="icon"><use href="#ic-heart"/></svg></div><b>Servicios estudiantiles</b><p>Atención psicológica, médica y de acompañamiento académico.</p></button>
+        <button class="info-card" data-info="ayudas"><div class="ic"><svg class="icon"><use href="#ic-users"/></svg></div><b>Ayudas económicas y ergonómicas</b><p>Becas, ayudas socioeconómicas y adaptaciones para estudiantes con discapacidad.</p></button>
+        <button class="info-card" data-info="arrendamientos"><div class="ic"><svg class="icon"><use href="#ic-home"/></svg></div><b>Arrendamientos</b><p>Gestión de espacios y locales dentro del campus universitario.</p></button>
+        <button class="info-card" data-info="planif-actividades"><div class="ic"><svg class="icon"><use href="#ic-clipboard"/></svg></div><b>Planificación de actividades</b><p>Cronograma de actividades culturales, deportivas y de bienestar.</p></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TRANSPARENCIA ===== -->
+  <section class="section" id="transparencia" aria-labelledby="h-transp">
+    <div class="wrap">
+      <div class="section-head"><span class="eyebrow">Transparencia</span><h2 id="h-transp">Acceso a la información pública</h2><p>Ley Orgánica de Transparencia y Acceso a la Información Pública (LOTAIP) y rendición de cuentas.</p></div>
+      <div class="section-banner sb-transparencia">
+        <div class="sb-text"><b>Gestión abierta y verificable</b><span>Información institucional publicada de forma periódica conforme a la LOTAIP.</span></div>
+        <svg class="sb-illus" viewBox="0 0 190 150" aria-hidden="true">
+          <path d="M95 12l45 16v34c0 34-20 58-45 66-25-8-45-32-45-66V28z" fill="rgba(255,255,255,.18)"/>
+          <path d="M95 12l45 16v34c0 34-20 58-45 66V12z" fill="rgba(255,255,255,.1)"/>
+          <polyline points="72,72 88,88 122,52" fill="none" stroke="#dba112" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="20" y="108" width="46" height="8" rx="4" fill="rgba(255,255,255,.5)"/>
+          <rect x="20" y="122" width="34" height="8" rx="4" fill="rgba(255,255,255,.3)"/>
+        </svg>
+      </div>
+      <div class="card-grid">
+        <button class="info-card" data-info="lotaip"><div class="ic"><svg class="icon"><use href="#ic-shield"/></svg></div><b>LOTAIP</b><p>Información pública mensual publicada conforme a la ley.</p></button>
+        <button class="info-card" data-info="rendicion"><div class="ic"><svg class="icon"><use href="#ic-check"/></svg></div><b>Rendición de cuentas</b><p>Informes anuales de gestión institucional.</p></button>
+        <button class="info-card" data-info="datos"><div class="ic"><svg class="icon"><use href="#ic-clipboard"/></svg></div><b>Datos institucionales</b><p>Presupuesto, contratación pública y distributivos.</p></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INTERNACIONAL (breve, enlazado desde barra verde) ===== -->
+  <section class="section section-alt" id="internacional" aria-labelledby="h-intl">
+    <div class="wrap" style="max-width:760px;">
+      <div class="section-head"><span class="eyebrow">Cooperación Internacional</span><h2 id="h-intl">Alianzas y movilidad</h2><p>Convenios internacionales y programas de movilidad académica con universidades socias.</p></div>
+      <a class="btn btn-outline" href="mailto:cooperacion.internacional@uteq.edu.ec">Contactar a Cooperación Internacional</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== CONTACTO ===== -->
+<section class="section" id="contacto" aria-labelledby="h-contacto">
+  <div class="wrap">
+    <div class="section-head"><span class="eyebrow">Contacto</span><h2 id="h-contacto">Escríbenos</h2></div>
+    <div class="contact-grid">
+      <ul class="contact-list">
+        <li><div class="ic"><svg class="icon"><use href="#ic-map"/></svg></div><div><b>Campus principal</b><span>Av. Walter Andrade Km 1.5 vía a Santo Domingo, Quevedo, Ecuador</span></div></li>
+        <li><div class="ic"><svg class="icon"><use href="#ic-phone"/></svg></div><div><b>Conmutador</b><a href="tel:+59353001500">(05) 3-001-500</a></div></li>
+        <li><div class="ic"><svg class="icon"><use href="#ic-mail"/></svg></div><div><b>Relaciones Públicas</b><a href="mailto:relacionespublicas@uteq.edu.ec">relacionespublicas@uteq.edu.ec</a></div></li>
+      </ul>
+      <form id="contactForm">
+        <div class="field"><label for="cNombre">Nombre</label><input type="text" id="cNombre" required><span class="err">Ingresa tu nombre.</span></div>
+        <div class="field"><label for="cEmail">Correo</label><input type="email" id="cEmail" required><span class="err">Ingresa un correo válido.</span></div>
+        <div class="field"><label for="cMensaje">Mensaje</label><textarea id="cMensaje" required></textarea><span class="err">Escribe tu mensaje.</span></div>
+        <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer" id="footer-sitemap">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <svg width="36" height="36" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l8 3.6v5.2c0 5-3.4 8.9-8 10.2-4.6-1.3-8-5.2-8-10.2V5.6L12 2z" fill="#dba112"/></svg>
+        <p>Universidad pública, inclusiva y de calidad al servicio de la sociedad ecuatoriana desde 1976.</p>
+      </div>
+      <div><h3>La Universidad</h3><ul><li><a href="#universidad">Autoridades</a></li><li><a href="#universidad">Normativa</a></li><li><a href="#universidad">Planificación</a></li></ul></div>
+      <div><h3>Estudiantes</h3><ul><li><a href="#admision">Admisión</a></li><li><a href="#carreras">Carreras</a></li><li><a href="https://www.uteq.edu.ec/es/posgrado" target="_blank" rel="noopener">Posgrado</a></li><li><a href="#bienestar">Bienestar universitario</a></li></ul></div>
+      <div><h3>Institucional</h3><ul><li><a href="#vinculacion">Vinculación</a></li><li><a href="https://www.uteq.edu.ec/es/investigacion" target="_blank" rel="noopener">Investigación</a></li><li><a href="#internacional">Cooperación internacional</a></li></ul></div>
+      <div><h3>Transparencia</h3><ul><li><a href="#transparencia">LOTAIP</a></li><li><a href="#transparencia">Rendición de cuentas</a></li><li><a href="#contacto">Contacto</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Universidad Técnica Estatal de Quevedo — Propuesta de mejora, no oficial.</span>
+      <a href="https://www.uteq.edu.ec/" target="_blank" rel="noopener">Sitio oficial uteq.edu.ec ↗</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== FLOATING: accesibilidad + soporte en línea ===== -->
+<div class="fab-stack">
+  <button class="fab fab-chat" id="chatFab" aria-label="Abrir soporte en línea" aria-haspopup="dialog"><svg class="icon" style="width:22px;height:22px"><use href="#ic-bot"/></svg><span class="dot" aria-hidden="true"></span></button>
+  <button class="fab fab-a11y" id="a11yFab" aria-label="Abrir opciones de accesibilidad" aria-haspopup="dialog"><svg class="icon" style="width:22px;height:22px"><use href="#ic-eye"/></svg></button>
+</div>
+
+<div class="a11y-panel" id="a11yPanel" role="dialog" aria-label="Opciones de accesibilidad">
+  <b>Accesibilidad</b>
+  <div class="a11y-row"><span>Alto contraste</span><button class="a11y-toggle" id="toggleContrast" role="switch" aria-checked="false" aria-label="Alto contraste"></button></div>
+  <div class="a11y-row"><span>Subrayar enlaces</span><button class="a11y-toggle" id="toggleUnderline" role="switch" aria-checked="false" aria-label="Subrayar enlaces"></button></div>
+  <div class="a11y-row"><span>Tamaño de texto</span><div class="a11y-textsize"><button id="textMinus" aria-label="Reducir texto">A−</button><button id="textPlus" aria-label="Aumentar texto">A+</button></div></div>
+</div>
+
+<div class="chat-panel" id="chatPanel" role="dialog" aria-label="Soporte en línea UTEQ">
+  <div class="chat-head">
+    <div class="av"><svg class="icon" style="width:16px;height:16px"><use href="#ic-bot"/></svg></div>
+    <div><b>Soporte en línea</b><span>Asistente UTEQ</span></div>
+    <button id="closeChat" aria-label="Cerrar soporte"><svg class="icon" style="width:13px;height:13px"><use href="#ic-close"/></svg></button>
+  </div>
+  <div class="chat-body" id="chatBody"></div>
+  <div class="chat-chips" id="chatChips"></div>
+  <form class="chat-input-row" id="chatForm">
+    <label for="chatInput" class="sr-only">Escribe tu pregunta</label>
+    <input type="text" id="chatInput" placeholder="Escribe tu pregunta, ej: ¿dónde queda la facultad de ingeniería?" autocomplete="off">
+    <button type="submit" id="chatSend" aria-label="Enviar pregunta"><svg class="icon" style="width:15px;height:15px"><use href="#ic-send"/></svg></button>
+  </form>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- Modal de información -->
+<div class="modal-backdrop" id="infoModal">
+  <div class="modal-box">
+    <button class="close-x" id="closeInfoModal" aria-label="Cerrar"><svg class="icon" style="width:14px;height:14px"><use href="#ic-close"/></svg></button>
+    <h3 id="infoModalTitle">Título</h3>
+    <p id="infoModalText">Contenido</p>
+  </div>
+</div>
+
+<script>
+(function(){
+"use strict";
+function $(sel,ctx){return (ctx||document).querySelector(sel);}
+function $all(sel,ctx){return Array.prototype.slice.call((ctx||document).querySelectorAll(sel));}
+
+/* ---------- toast ---------- */
+function toast(msg){
+  var box=document.createElement("div");
+  box.className="toast";
+  box.innerHTML='<svg class="icon"><use href="#ic-check"/></svg><span>'+msg+'</span>';
+  $("#toastContainer").appendChild(box);
+  setTimeout(function(){ box.style.transition="opacity .2s ease"; box.style.opacity="0"; setTimeout(function(){box.remove();},220); },3600);
+}
+
+/* ---------- info modal (contenido real por sección) ---------- */
+var infoData = {
+  sga:["Sistema de Gestión Académica (SGA)","Acceso para estudiantes y docentes con cuenta institucional @uteq.edu.ec."],
+  sagest:["SAGEST","Sistema de gestión institucional de uso administrativo."],
+  correo:["Correo institucional","Acceso al correo @uteq.edu.ec para estudiantes, docentes y personal administrativo."],
+  comunicacion:["Comunicación","Canal oficial de prensa, boletines y solicitudes de cobertura institucional."],
+  autoridades:["Autoridades","Rectorado, vicerrectorados académico y de investigación, y decanatos de las 5 facultades."],
+  normativa:["Normativa institucional","Estatuto orgánico, reglamentos internos y resoluciones vigentes del Consejo Universitario."],
+  planificacion:["Planificación estratégica","Plan Estratégico Institucional (PEI) y planificación operativa anual (POA)."],
+  identidad:["Identidad corporativa","Manual de identidad corporativa: logotipo, colores institucionales y lineamientos de marca."],
+  convenios:["Convenios","Listado de convenios interinstitucionales vigentes con entidades públicas y privadas."],
+  "tramite-vinc":["Trámites de vinculación","Formularios y requisitos para proponer nuevos proyectos o convenios de vinculación."],
+  seguimiento:["Seguimiento","Reportes de avance y cumplimiento de los proyectos de vinculación en ejecución."],
+  informes:["Informes","Informes anuales del Departamento de Vinculación con la Sociedad."],
+  "servicios-est":["Servicios estudiantiles","Atención psicológica, médica y orientación académica para estudiantes."],
+  ayudas:["Ayudas económicas y ergonómicas","Becas socioeconómicas y adaptaciones para estudiantes con discapacidad."],
+  arrendamientos:["Arrendamientos","Gestión de espacios y locales comerciales dentro del campus universitario."],
+  "planif-actividades":["Planificación de actividades","Cronograma de actividades culturales, deportivas y de bienestar estudiantil."],
+  lotaip:["LOTAIP","Información pública mensual publicada conforme a la Ley Orgánica de Transparencia y Acceso a la Información Pública."],
+  rendicion:["Rendición de cuentas","Informes anuales de gestión institucional presentados a la comunidad universitaria."],
+  datos:["Datos institucionales","Presupuesto, contratación pública y distributivo de personal."]
+};
+function openInfoModal(key){
+  var d = infoData[key];
+  if(!d) return;
+  $("#infoModalTitle").textContent = d[0];
+  $("#infoModalText").textContent = d[1];
+  $("#infoModal").classList.add("show");
+}
+$all("[data-info]").forEach(function(el){ el.addEventListener("click", function(){ openInfoModal(el.dataset.info); }); });
+$("#closeInfoModal").addEventListener("click", function(){ $("#infoModal").classList.remove("show"); });
+$("#infoModal").addEventListener("click", function(e){ if(e.target===this) this.classList.remove("show"); });
+
+/* ---------- idiomas ---------- */
+$all("[data-lang]").forEach(function(b){
+  b.addEventListener("click", function(){
+    $all("[data-lang]").forEach(function(x){ x.classList.remove("active"); x.removeAttribute("aria-current"); });
+    b.classList.add("active"); b.setAttribute("aria-current","true");
+    toast(b.dataset.lang==="es" ? "Idioma: Español" : (b.dataset.lang==="en" ? "Language: English (próximamente)" : "Idioma: Português (em breve)"));
+  });
+});
+
+/* ---------- mega menús desktop ---------- */
+var navItems = $all("[data-nav-item]");
+function closeAllNav(){ navItems.forEach(function(it){ it.classList.remove("open"); var b=$(".nav-top-btn",it); if(b) b.setAttribute("aria-expanded","false"); }); }
+navItems.forEach(function(item){
+  var btn = $(".nav-top-btn", item);
+  btn.addEventListener("click", function(e){
+    e.stopPropagation();
+    var open = item.classList.contains("open");
+    closeAllNav();
+    if(!open){ item.classList.add("open"); btn.setAttribute("aria-expanded","true"); }
+  });
+});
+document.addEventListener("click", closeAllNav);
+document.addEventListener("keydown", function(e){ if(e.key==="Escape") closeAllNav(); });
+
+/* ---------- mobile drawer ---------- */
+var menuData = [
+  {label:"La Universidad", links:[["#universidad","Autoridades y administración"],["#universidad","Normativa institucional"],["#universidad","Planificación estratégica"]]},
+  {label:"Admisión", href:"#admision"},
+  {label:"Carreras", href:"#carreras"},
+  {label:"Posgrado", links:[["https://www.uteq.edu.ec/es/posgrado","Maestrías vigentes"]]},
+  {label:"Investigación", links:[["https://www.uteq.edu.ec/es/investigacion","CIDU"],["https://www.uteq.edu.ec/es/investigacion/proyectos","Proyectos"],["https://www.uteq.edu.ec/es/investigacion/produccion-cientifica","Producción científica"]]},
+  {label:"Vinculación", links:[["#vinculacion","Convenios"],["#vinculacion","Trámites de vinculación"],["#vinculacion","Seguimiento e informes"]]},
+  {label:"Bienestar Universitario", links:[["#bienestar","Servicios estudiantiles"],["#bienestar","Ayudas económicas y ergonómicas"],["#bienestar","Arrendamientos"],["#bienestar","Planificación de actividades"]]},
+  {label:"Transparencia", links:[["#transparencia","LOTAIP"],["#transparencia","Rendición de cuentas"],["#transparencia","Datos institucionales"]]}
+];
+function renderMobileMenu(){
+  var wrap = $("#mAccordion");
+  wrap.innerHTML = "";
+  menuData.forEach(function(g){
+    if(g.href){
+      var a = document.createElement("a");
+      a.href = g.href; a.className="m-acc-head"; a.style.textDecoration="none"; a.textContent = g.label;
+      a.addEventListener("click", closeDrawer);
+      wrap.appendChild(a);
+      return;
+    }
+    var item = document.createElement("div");
+    item.className = "m-acc-item";
+    var linksHtml = g.links.map(function(l){
+      var ext = l[0].indexOf("http")===0;
+      return '<a href="'+l[0]+'"'+(ext?' target="_blank" rel="noopener"':'')+'>'+l[1]+'</a>';
+    }).join("");
+    item.innerHTML = '<button class="m-acc-head">'+g.label+'<svg class="icon chev"><use href="#ic-chevron-down"/></svg></button><div class="m-acc-body">'+linksHtml+'</div>';
+    wrap.appendChild(item);
+  });
+  $all(".m-acc-item .m-acc-head",wrap).forEach(function(h){ h.addEventListener("click", function(){ h.closest(".m-acc-item").classList.toggle("open"); }); });
+  $all(".m-acc-body a",wrap).forEach(function(a){ a.addEventListener("click", closeDrawer); });
+}
+function openDrawer(){ $("#mobileDrawer").classList.add("open"); $("#mobileOverlay").classList.add("show"); }
+function closeDrawer(){ $("#mobileDrawer").classList.remove("open"); $("#mobileOverlay").classList.remove("show"); }
+$("#openDrawer").addEventListener("click", openDrawer);
+$("#closeDrawer").addEventListener("click", closeDrawer);
+$("#mobileOverlay").addEventListener("click", closeDrawer);
+renderMobileMenu();
+
+/* ---------- búsqueda barra verde ---------- */
+$("#greenSearchForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  var val = $("#greenSearch").value.toLowerCase().trim();
+  var map = {"carrera":"#carreras","admision":"#admision","admisión":"#admision","vinculacion":"#vinculacion","vinculación":"#vinculacion","bienestar":"#bienestar","transparencia":"#transparencia","lotaip":"#transparencia","investigacion":"#universidad","investigación":"#universidad","contacto":"#contacto","posgrado":null};
+  var found = null;
+  Object.keys(map).forEach(function(k){ if(val.indexOf(k)!==-1) found = map[k]; });
+  if(found){ document.querySelector(found).scrollIntoView({behavior:"smooth"}); toast("Mostrando resultados para “"+val+"”."); }
+  else if(val){ toast("No se encontraron secciones para “"+val+"”. Prueba con Soporte en línea."); }
+});
+
+/* ---------- contacto ---------- */
+$("#contactForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  var nF=$("#cNombre").closest(".field"), eF=$("#cEmail").closest(".field"), mF=$("#cMensaje").closest(".field");
+  var ok=true;
+  nF.classList.toggle("invalid", !$("#cNombre").value.trim()); if(!$("#cNombre").value.trim()) ok=false;
+  var emailOk=/^\S+@\S+\.\S+$/.test($("#cEmail").value.trim());
+  eF.classList.toggle("invalid", !emailOk); if(!emailOk) ok=false;
+  mF.classList.toggle("invalid", !$("#cMensaje").value.trim()); if(!$("#cMensaje").value.trim()) ok=false;
+  if(!ok){ toast("Completa el formulario correctamente."); return; }
+  toast("Mensaje enviado. Te responderemos a "+$("#cEmail").value.trim());
+  this.reset();
+  $all(".field.invalid",this).forEach(function(f){f.classList.remove("invalid");});
+});
+
+/* ---------- accesibilidad ---------- */
+var textStep = 0;
+function updatePanel(){
+  $("#toggleContrast").classList.toggle("on", document.documentElement.classList.contains("a11y-contrast"));
+  $("#toggleContrast").setAttribute("aria-checked", document.documentElement.classList.contains("a11y-contrast"));
+  $("#toggleUnderline").classList.toggle("on", document.documentElement.classList.contains("a11y-underline"));
+  $("#toggleUnderline").setAttribute("aria-checked", document.documentElement.classList.contains("a11y-underline"));
+}
+$("#a11yFab").addEventListener("click", function(e){ e.stopPropagation(); $("#a11yPanel").classList.toggle("show"); $("#chatPanel").classList.remove("show"); });
+$("#toggleContrast").addEventListener("click", function(){ document.documentElement.classList.toggle("a11y-contrast"); updatePanel(); });
+$("#toggleUnderline").addEventListener("click", function(){ document.documentElement.classList.toggle("a11y-underline"); updatePanel(); });
+$("#textPlus").addEventListener("click", function(){ if(textStep<3){textStep++; document.documentElement.classList.add("a11y-big"); document.documentElement.style.fontSize=(100+textStep*12.5)+"%";} });
+$("#textMinus").addEventListener("click", function(){ if(textStep>0){textStep--; document.documentElement.style.fontSize=(100+textStep*12.5)+"%"; if(textStep===0){document.documentElement.classList.remove("a11y-big"); document.documentElement.style.fontSize="";}} });
+document.addEventListener("click", function(e){ if(!$("#a11yPanel").contains(e.target) && e.target!==$("#a11yFab")) $("#a11yPanel").classList.remove("show"); });
+
+/* ---------- chatbot: soporte en línea (motor de intenciones por palabras clave, 100% local) ---------- */
+var CAMPUS = "Av. Walter Andrade Km 1.5 vía a Santo Domingo, cantón Quevedo, provincia de Los Ríos, Ecuador";
+var intents = [
+  {id:"ubic-uteq", chips:"¿Dónde está la UTEQ?",
+    kw:["donde","ubicacion","ubicada","direccion","queda","llegar","como llego","campus","mapa"],
+    kwBoost:["universidad","uteq"],
+    a:"La UTEQ tiene su campus principal en "+CAMPUS+". Todas las facultades funcionan dentro de este mismo campus."},
+  {id:"fac-ing", chips:"Facultad de Ingeniería",
+    kw:["ingenieria","software","civil","industrial","sistemas"],
+    a:"La Facultad de Ciencias de la Ingeniería está dentro del campus principal ("+CAMPUS+"). Ahí se dictan carreras como Ingeniería en Software, Civil e Industrial."},
+  {id:"fac-agro", chips:"Facultad Agropecuaria",
+    kw:["agropecuaria","agroecologia","agronomia","agricola"],
+    a:"La Facultad de Ciencias Agropecuarias funciona en el campus principal ("+CAMPUS+") y cuenta además con áreas experimentales agrícolas anexas."},
+  {id:"fac-pec", chips:"Facultad Pecuaria",
+    kw:["pecuaria","veterinaria","zootecnia","acuicultura"],
+    a:"La Facultad de Ciencias Pecuarias está en el campus principal ("+CAMPUS+"), con áreas para prácticas de veterinaria, zootecnia y acuicultura."},
+  {id:"fac-emp", chips:"Facultad Empresarial",
+    kw:["empresarial","administracion","contabilidad","turismo","negocios"],
+    a:"La Facultad de Ciencias Empresariales está en el campus principal ("+CAMPUS+"). Incluye Administración de Empresas, Contabilidad y Auditoría, y Turismo."},
+  {id:"fac-amb", chips:"Facultad Ambiental",
+    kw:["ambiental","ambientales","biotecnologia","ecologia"],
+    a:"La Facultad de Ciencias Ambientales está en el campus principal ("+CAMPUS+"), con laboratorios propios de Biotecnología e Ingeniería Ambiental."},
+  {id:"universidad", chips:"La Universidad",
+    kw:["autoridades","rector","normativa","reglamento","estatuto","planificacion","identidad","organizacion","historia"],
+    a:"En la sección “La Universidad” encuentras autoridades, normativa institucional, planificación estratégica e identidad corporativa."},
+  {id:"admision", chips:"Admisión",
+    kw:["admision","postular","postulacion","inscribir","inscripcion","ingreso","matricula","matricularme","cupo","requisitos"],
+    a:"El proceso de admisión está en la sección Admisión, con el botón “Postúlate ahora” en la parte superior de la página."},
+  {id:"carreras", chips:"Carreras",
+    kw:["carrera","carreras","estudiar","malla","oferta academica"],
+    a:"La UTEQ ofrece 35 carreras distribuidas en 5 facultades. Puedes verlas todas en la sección Carreras, organizada por facultad."},
+  {id:"posgrado", chips:"Posgrado",
+    kw:["posgrado","maestria","maestrias"],
+    a:"La oferta de maestrías está en la sección Posgrado del menú principal, con enlace directo al sitio de posgrados."},
+  {id:"investigacion", chips:"Investigación",
+    kw:["investigacion","cidu","proyectos","cientifica","publicaciones"],
+    a:"Investigación reúne al CIDU, los proyectos de investigación y la producción científica de la UTEQ."},
+  {id:"vinculacion", chips:"Vinculación",
+    kw:["vinculacion","convenio","convenios","tramite de vinculacion","seguimiento","informe de vinculacion"],
+    a:"Vinculación reúne convenios, trámites de vinculación y el seguimiento e informes de los proyectos con la comunidad. Hay 122 convenios activos."},
+  {id:"bienestar", chips:"Bienestar",
+    kw:["bienestar","beca","becas","psicologia","salud estudiantil","arrendamiento","ergonomica","actividades"],
+    a:"Bienestar Universitario incluye servicios estudiantiles, ayudas económicas y ergonómicas, arrendamientos de espacios y planificación de actividades."},
+  {id:"transparencia", chips:"Transparencia",
+    kw:["transparencia","lotaip","rendicion de cuentas","presupuesto","contratacion publica"],
+    a:"Transparencia reúne la LOTAIP, la rendición de cuentas y los datos institucionales, según la Ley Orgánica de Transparencia y Acceso a la Información Pública."},
+  {id:"contacto", chips:"Contacto",
+    kw:["contacto","telefono","correo","email","escribir","llamar","numero"],
+    a:"Puedes escribirnos a relacionespublicas@uteq.edu.ec o llamar al (05) 3-001-500, de lunes a viernes."},
+  {id:"biblioteca", chips:"Biblioteca",
+    kw:["biblioteca","libros","catalogo"],
+    a:"La Biblioteca General tiene su propio sitio en biblioteca.uteq.edu.ec, enlazado desde la barra superior verde."}
+];
+var greetKw = ["hola","buenas","buenos dias","buenas tardes","hey"];
+var thanksKw = ["gracias","muchas gracias","ok gracias"];
+
+function normalize(s){
+  return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").trim();
+}
+function matchIntent(raw){
+  var text = normalize(raw);
+  if(greetKw.some(function(k){return text.indexOf(k)!==-1;})) return {a:"¡Hola! Puedo orientarte sobre ubicación de facultades, admisión, carreras, vinculación, bienestar, transparencia o contacto. ¿Qué necesitas saber?"};
+  if(thanksKw.some(function(k){return text.indexOf(k)!==-1;})) return {a:"¡Con gusto! Si tienes otra pregunta sobre la UTEQ, aquí estoy."};
+  var best=null, bestScore=0;
+  intents.forEach(function(it){
+    var score=0;
+    it.kw.forEach(function(k){ if(text.indexOf(k)!==-1) score += k.split(" ").length; });
+    if(it.kwBoost) it.kwBoost.forEach(function(k){ if(text.indexOf(k)!==-1) score += 0.5; });
+    if(score>bestScore){ bestScore=score; best=it; }
+  });
+  if(best && bestScore>0) return best;
+  return {a:"No tengo esa información exacta todavía. Prueba preguntando por: ubicación de una facultad, admisión, carreras, vinculación, bienestar, transparencia o contacto. También puedes escribirnos a relacionespublicas@uteq.edu.ec."};
+}
+
+var chatOpened = false;
+function openChat(){
+  $("#chatPanel").classList.add("show");
+  $("#a11yPanel").classList.remove("show");
+  if(!chatOpened){
+    chatOpened = true;
+    addBotMsg("Hola, soy el soporte en línea de la UTEQ. Pregúntame, por ejemplo: “¿dónde queda la facultad de ingeniería?” o “¿cómo me admisión?”. También puedes usar los botones de abajo.");
+    renderChips();
+  }
+  setTimeout(function(){ $("#chatInput").focus(); },150);
+}
+function closeChatFn(){ $("#chatPanel").classList.remove("show"); }
+$("#chatFab").addEventListener("click", function(e){ e.stopPropagation(); $("#chatPanel").classList.contains("show") ? closeChatFn() : openChat(); });
+$("#closeChat").addEventListener("click", closeChatFn);
+function addBotMsg(t){ var d=document.createElement("div"); d.className="chat-msg bot"; d.textContent=t; $("#chatBody").appendChild(d); $("#chatBody").scrollTop=$("#chatBody").scrollHeight; }
+function addUserMsg(t){ var d=document.createElement("div"); d.className="chat-msg user"; d.textContent=t; $("#chatBody").appendChild(d); $("#chatBody").scrollTop=$("#chatBody").scrollHeight; }
+function showTyping(){
+  var d=document.createElement("div"); d.className="chat-typing"; d.id="chatTyping";
+  d.innerHTML="<span></span><span></span><span></span>";
+  $("#chatBody").appendChild(d); $("#chatBody").scrollTop=$("#chatBody").scrollHeight;
+}
+function hideTyping(){ var t=$("#chatTyping"); if(t) t.remove(); }
+function askBot(text){
+  addUserMsg(text);
+  showTyping();
+  var result = matchIntent(text);
+  setTimeout(function(){ hideTyping(); addBotMsg(result.a); }, 450 + Math.random()*350);
+}
+function renderChips(){
+  var wrap = $("#chatChips");
+  wrap.innerHTML = "";
+  intents.slice(0,6).forEach(function(it){
+    var b=document.createElement("button");
+    b.className="chat-chip"; b.textContent=it.chips;
+    b.addEventListener("click", function(){ askBot(it.chips); });
+    wrap.appendChild(b);
+  });
+}
+$("#chatForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  var val = $("#chatInput").value.trim();
+  if(!val) return;
+  askBot(val);
+  $("#chatInput").value = "";
+});
+
+})();
+</script>
+</body>
+</html>
