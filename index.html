@@ -55,36 +55,33 @@ h1,h2,h3{margin:0;line-height:1.2;}
 
 /* ---------- Barra verde: logo + institucional ---------- */
 .bar-green{background:var(--green);color:#fff;}
-.bar-green .wrap{display:flex;align-items:center;gap:20px;height:74px;}
+.bar-green .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;height:70px;}
 .logo-link{display:flex;align-items:center;gap:10px;flex-shrink:0;}
 .logo-mark{width:42px;height:42px;flex-shrink:0;}
 .logo-text{line-height:1.15;}
 .logo-text b{display:block;font-size:19px;font-weight:800;letter-spacing:.4px;}
 .logo-text span{display:block;font-size:10px;font-weight:600;color:#d6ecd3;}
-.bar-green-links{display:flex;align-items:center;gap:4px;flex:1;justify-content:center;flex-wrap:wrap;}
-.bar-green-links a{padding:8px 12px;border-radius:8px;font-size:12.8px;font-weight:700;}
-.bar-green-links a:hover{background:rgba(255,255,255,.14);}
 .green-search{display:flex;align-items:center;background:#fff;border-radius:9px;overflow:hidden;flex-shrink:0;}
 .green-search input{border:0;padding:9px 10px;font-size:12.5px;width:160px;outline:none;}
 .green-search button{background:var(--green-dark);border:0;color:#fff;width:38px;height:36px;display:flex;align-items:center;justify-content:center;}
 .green-search button:hover{background:#000;}
-@media(max-width:980px){.bar-green-links{display:none;}.green-search input{width:120px;}}
+@media(max-width:980px){.green-search input{width:120px;}}
 
-/* ---------- Barra blanca: menú principal ---------- */
-.site-header{position:sticky;top:0;z-index:80;background:#fff;box-shadow:0 1px 0 var(--border);}
-.main-nav{display:flex;align-items:center;height:56px;gap:2px;}
+/* ---------- Menú de navegación (segunda franja, mismo verde institucional: unificado con la barra verde) ---------- */
+.site-header{position:sticky;top:0;z-index:80;background:var(--green);box-shadow:inset 0 1px 0 rgba(255,255,255,.14);}
+.main-nav{display:flex;align-items:center;height:52px;gap:2px;flex-wrap:wrap;}
 .nav-item{position:relative;}
-.nav-top-btn{display:flex;align-items:center;gap:5px;padding:10px 13px;border-radius:8px;background:none;border:0;font-size:12.8px;font-weight:700;color:var(--text);}
-.nav-top-btn:hover{color:var(--green);}
-.nav-item.open .nav-top-btn{color:var(--green);}
-.nav-top-btn .chev{width:13px;height:13px;color:var(--text-soft);transition:transform var(--transition);}
+.nav-top-btn{display:flex;align-items:center;gap:5px;padding:10px 13px;border-radius:8px;background:none;border:0;font-size:12.8px;font-weight:700;color:#fff;}
+.nav-top-btn:hover{color:var(--gold);}
+.nav-item.open .nav-top-btn{color:var(--gold);}
+.nav-top-btn .chev{width:13px;height:13px;color:rgba(255,255,255,.75);transition:transform var(--transition);}
 .nav-item.open .chev{transform:rotate(180deg);}
 .mega{position:absolute;top:calc(100% + 8px);left:0;min-width:250px;background:#fff;border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow-lg);padding:7px;opacity:0;transform:translateY(-8px);pointer-events:none;transition:all .18s ease;z-index:10;}
 .nav-item.open .mega{opacity:1;transform:translateY(0);pointer-events:auto;}
 .mega a,.mega button{display:flex;width:100%;align-items:center;gap:9px;padding:9px 11px;border-radius:8px;font-size:12.6px;font-weight:600;color:var(--text);background:none;border:0;text-align:left;}
 .mega a:hover,.mega button:hover{background:var(--gray-light);color:var(--green);}
 .mega a .icon,.mega button .icon{width:15px;height:15px;color:var(--green);}
-.hamburger{display:none;background:var(--gray-light);border:0;width:38px;height:38px;border-radius:9px;align-items:center;justify-content:center;color:var(--text);margin-left:auto;}
+.hamburger{display:none;background:rgba(255,255,255,.16);border:0;width:38px;height:38px;border-radius:9px;align-items:center;justify-content:center;color:#fff;margin-left:auto;}
 @media(max-width:980px){.main-nav{display:none;}}
 .header-mobile-row{display:none;align-items:center;justify-content:flex-end;padding:10px 0;}
 @media(max-width:980px){.header-mobile-row{display:flex;}}
@@ -321,6 +318,9 @@ h1,h2,h3{margin:0;line-height:1.2;}
     <button data-info="sagest"><svg class="icon" style="width:13px;height:13px"><use href="#ic-tool"/></svg>SAGEST</button>
     <a href="#admision" style="color:var(--gold);"><svg class="icon" style="width:13px;height:13px"><use href="#ic-graduate"/></svg>Postúlate</a>
     <button data-info="correo"><svg class="icon" style="width:13px;height:13px"><use href="#ic-mail"/></svg>Institucional</button>
+    <a href="#internacional"><svg class="icon" style="width:13px;height:13px"><use href="#ic-globe"/></svg>Cooperación Internacional</a>
+    <button data-info="comunicacion"><svg class="icon" style="width:13px;height:13px"><use href="#ic-file"/></svg>Comunicación</button>
+    <a href="#contacto"><svg class="icon" style="width:13px;height:13px"><use href="#ic-phone"/></svg>Contacto</a>
     <div class="spacer"></div>
     <div class="langs" role="group" aria-label="Idioma">
       <button data-lang="en">EN</button>
@@ -341,12 +341,6 @@ h1,h2,h3{margin:0;line-height:1.2;}
       </svg>
       <span class="logo-text"><b>UTEQ</b><span>Universidad Técnica Estatal de Quevedo</span></span>
     </a>
-    <nav class="bar-green-links" aria-label="Enlaces institucionales">
-      <a href="https://biblioteca.uteq.edu.ec/" target="_blank" rel="noopener">Biblioteca</a>
-      <a href="#internacional">Cooperación Internacional</a>
-      <button data-info="comunicacion">Comunicación</button>
-      <a href="#contacto">Contacto</a>
-    </nav>
     <form class="green-search" id="greenSearchForm" role="search">
       <label for="greenSearch" class="sr-only">Buscar en el sitio</label>
       <input type="text" id="greenSearch" placeholder="Buscar en uteq.edu.ec...">
@@ -355,13 +349,14 @@ h1,h2,h3{margin:0;line-height:1.2;}
   </div>
 </div>
 
-<!-- ===== BARRA BLANCA: MENÚ PRINCIPAL ===== -->
+<!-- ===== MENÚ DE NAVEGACIÓN (unificado en verde con la barra superior) ===== -->
 <header class="site-header">
   <div class="wrap">
     <div class="header-mobile-row">
       <button class="hamburger" id="openDrawer" aria-label="Abrir menú de navegación"><svg class="icon"><use href="#ic-menu"/></svg></button>
     </div>
     <nav class="main-nav" aria-label="Menú principal">
+      <div class="nav-item"><a class="nav-top-btn" href="https://biblioteca.uteq.edu.ec/" target="_blank" rel="noopener">Biblioteca</a></div>
       <div class="nav-item" data-nav-item>
         <button class="nav-top-btn" aria-expanded="false" aria-haspopup="true">La Universidad<svg class="icon chev"><use href="#ic-chevron-down"/></svg></button>
         <div class="mega" role="menu">
@@ -706,6 +701,7 @@ document.addEventListener("keydown", function(e){ if(e.key==="Escape") closeAllN
 
 /* ---------- mobile drawer ---------- */
 var menuData = [
+  {label:"Biblioteca", href:"https://biblioteca.uteq.edu.ec/"},
   {label:"La Universidad", links:[["#universidad","Autoridades y administración"],["#universidad","Normativa institucional"],["#universidad","Planificación estratégica"]]},
   {label:"Admisión", href:"#admision"},
   {label:"Carreras", href:"#carreras"},
@@ -722,6 +718,7 @@ function renderMobileMenu(){
     if(g.href){
       var a = document.createElement("a");
       a.href = g.href; a.className="m-acc-head"; a.style.textDecoration="none"; a.textContent = g.label;
+      if(g.href.indexOf("http")===0){ a.target="_blank"; a.rel="noopener"; }
       a.addEventListener("click", closeDrawer);
       wrap.appendChild(a);
       return;
