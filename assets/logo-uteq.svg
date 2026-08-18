@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Escudo UTEQ">
+  <path d="M32 3 L59 11.5 V32.5 C59 46.5 46.8 57.2 32 61 C17.2 57.2 5 46.5 5 32.5 V11.5 Z" fill="#0d3d24"/>
+  <path d="M32 3 L59 11.5 V32.5 C59 46.5 46.8 57.2 32 61 C17.2 57.2 5 46.5 5 32.5 V11.5 Z" fill="none" stroke="#f1b400" stroke-width="2.5"/>
+  <path d="M32 9 L53 15.6 V32.4 C53 43.6 43.6 52.3 32 55.5 C20.4 52.3 11 43.6 11 32.4 V15.6 Z" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="1.2"/>
+  <text x="32" y="38.5" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="17" fill="#ffffff" letter-spacing="0.5">UTEQ</text>
+</svg>

@@ -1,0 +1,27 @@
+/* UTEQ — estilos propios del prototipo.
+   El framework de diseño es Tailwind CSS (CDN, en index.html).
+   Aquí solo va lo que Tailwind no cubre: estados dinamicos y animaciones. */
+
+body{font-family:'Inter',sans-serif;}
+  .font-display{font-family:'Sora',sans-serif;}
+  /* --- lo mínimo que Tailwind no cubre bien: estados dinámicos --- */
+  html.a11y-contrast{filter:contrast(1.15) saturate(1.1);}
+  html.a11y-underline a{text-decoration:underline!important;}
+  /* menú desplegable de escritorio */
+  .mega{opacity:0;transform:translateY(-8px);pointer-events:none;transition:all .18s ease;}
+  .nav-item.open .mega{opacity:1;transform:translateY(0);pointer-events:auto;}
+  .nav-item.open .chev{transform:rotate(180deg);}
+  /* acordeón del menú móvil */
+  .m-acc-body{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+  .m-acc-item.open .m-acc-body{max-height:320px;}
+  .m-acc-item.open .chev{transform:rotate(180deg);}
+  /* carrusel del hero */
+  .hero-slide{opacity:0;transition:opacity .8s ease;}
+  .hero-slide.active{opacity:1;}
+  .hero-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.4);transition:all .2s ease;}
+  .hero-dot.active{background:#fbbf24;width:22px;border-radius:5px;}
+  @keyframes chatdot{0%,60%,100%{opacity:.3;transform:translateY(0);}30%{opacity:1;transform:translateY(-3px);}}
+  .chat-typing span{width:6px;height:6px;border-radius:50%;background:#a8a8a7;display:inline-block;animation:chatdot 1s infinite ease-in-out;}
+  .chat-typing span:nth-child(2){animation-delay:.15s;}
+  .chat-typing span:nth-child(3){animation-delay:.3s;}
+  ::-webkit-scrollbar{width:9px;height:9px;}

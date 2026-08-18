@@ -1,0 +1,12 @@
+# Configuracion de Netlify para el prototipo de portada UTEQ.
+
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+# El frontend llama a /api/chat; aqui se redirige a la funcion serverless.
+[[redirects]]
+  from = "/api/chat"
+  to = "/.netlify/functions/chat"
+  status = 200
+  force = true
