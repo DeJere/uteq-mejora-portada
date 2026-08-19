@@ -15,18 +15,20 @@
 <body class="bg-white text-gray-900">
 
 <!-- ================= BARRA SUPERIOR DE UTILIDADES ================= -->
-<div class="bg-[#0d3d24] text-emerald-50/90">
-  <div class="max-w-7xl mx-auto px-4 h-9 flex items-center gap-5 text-[12px] overflow-x-auto whitespace-nowrap">
+<div class="bg-[#0d3d24] text-emerald-50/90 relative z-[60]">
+  <div class="max-w-7xl mx-auto px-4 h-9 flex items-center text-[12px]">
+    <div class="flex items-center gap-5 whitespace-nowrap overflow-x-auto sin-barra min-w-0 flex-1">
     <button data-info="correo" class="flex items-center gap-1.5 hover:text-amber-300 transition-colors shrink-0 cursor-pointer"><i class="fas fa-envelope text-[11px]"></i>Correo institucional</button>
     <a href="https://sga.uteq.edu.ec/" target="_blank" rel="noopener" class="flex items-center gap-1.5 hover:text-amber-300 transition-colors shrink-0"><i class="fas fa-display text-[11px]"></i>Aula Virtual</a>
     <a href="https://biblioteca.uteq.edu.ec/" target="_blank" rel="noopener" class="flex items-center gap-1.5 hover:text-amber-300 transition-colors shrink-0"><i class="fas fa-book-open text-[11px]"></i>Biblioteca</a>
     <a href="#transparencia" class="flex items-center gap-1.5 hover:text-amber-300 transition-colors shrink-0"><i class="fas fa-shield-halved text-[11px]"></i>Transparencia</a>
     <a href="#contacto" class="flex items-center gap-1.5 hover:text-amber-300 transition-colors shrink-0"><i class="fas fa-phone text-[11px]"></i>Contacto</a>
-    <div class="relative ml-auto shrink-0">
-      <button id="langToggle" class="flex items-center gap-1.5 hover:text-amber-300 transition-colors font-semibold"><span id="langLabel">ES</span><i class="fas fa-chevron-down text-[8px]"></i></button>
-      <div id="langMenu" class="hidden absolute right-0 top-7 bg-white text-gray-700 rounded-lg shadow-2xl py-1 w-32 z-[70]">
-        <button data-lang="es" class="w-full text-left px-3 py-1.5 hover:bg-emerald-50 text-xs font-medium" aria-current="true">🇪🇨 Español</button>
-        <button data-lang="en" class="w-full text-left px-3 py-1.5 hover:bg-emerald-50 text-xs font-medium">🇺🇸 English</button>
+    </div>
+    <div class="relative shrink-0 pl-4">
+      <button id="langToggle" aria-haspopup="true" aria-expanded="false" class="flex items-center gap-1.5 hover:text-amber-300 transition-colors font-semibold"><span id="langLabel">ES</span><i class="fas fa-chevron-down text-[8px] transition-transform"></i></button>
+      <div id="langMenu" class="hidden absolute right-0 top-[calc(100%+10px)] bg-white text-gray-700 rounded-xl shadow-2xl ring-1 ring-black/5 py-1.5 w-36 z-[200] origin-top-right">
+        <button data-lang="es" class="w-full text-left px-3.5 py-2 hover:bg-emerald-50 text-xs font-medium" aria-current="true">🇪🇨 Español</button>
+        <button data-lang="en" class="w-full text-left px-3.5 py-2 hover:bg-emerald-50 text-xs font-medium">🇺🇸 English</button>
       </div>
     </div>
   </div>

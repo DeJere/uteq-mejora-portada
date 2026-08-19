@@ -25,3 +25,7 @@ body{font-family:'Inter',sans-serif;}
   .chat-typing span:nth-child(2){animation-delay:.15s;}
   .chat-typing span:nth-child(3){animation-delay:.3s;}
   ::-webkit-scrollbar{width:9px;height:9px;}
+
+/* barra superior: scroll horizontal sin barra visible */
+.sin-barra{scrollbar-width:none;-ms-overflow-style:none;}
+.sin-barra::-webkit-scrollbar{display:none;}

@@ -65,9 +65,16 @@
 
   /* ---------- idioma (barra superior) ---------- */
   var langMenu = $("#langMenu");
+  function pintarFlechaIdioma() {
+    var abierto = !langMenu.classList.contains("hidden");
+    $("#langToggle").setAttribute("aria-expanded", abierto);
+    var flecha = $("#langToggle i");
+    if (flecha) flecha.style.transform = abierto ? "rotate(180deg)" : "";
+  }
   $("#langToggle").addEventListener("click", function (e) {
     e.stopPropagation();
     langMenu.classList.toggle("hidden");
+    pintarFlechaIdioma();
   });
   $all("[data-lang]").forEach(function (b) {
     b.addEventListener("click", function () {
@@ -75,12 +82,14 @@
       b.setAttribute("aria-current", "true");
       $("#langLabel").textContent = b.dataset.lang.toUpperCase();
       langMenu.classList.add("hidden");
+      pintarFlechaIdioma();
       toast(b.dataset.lang === "es" ? "Idioma: Español" : "Language: English (próximamente)");
     });
   });
   document.addEventListener("click", function (e) {
     if (!langMenu.contains(e.target) && e.target !== $("#langToggle") && !$("#langToggle").contains(e.target)) {
       langMenu.classList.add("hidden");
+      pintarFlechaIdioma();
     }
   });
 
