@@ -37,8 +37,7 @@
     seguimiento: ["Seguimiento", "Reportes de avance y cumplimiento de los proyectos de vinculación en ejecución."],
     informes: ["Informes", "Informes anuales del Departamento de Vinculación con la Sociedad."],
     "servicios-est": ["Servicios estudiantiles", "Atención psicológica, médica y orientación académica para estudiantes."],
-    ayudas: ["Ayudas económicas y ergonómicas", "Becas socioeconómicas y adaptaciones para estudiantes con discapacidad."],
-    arrendamientos: ["Arrendamientos", "Gestión de espacios y locales comerciales dentro del campus universitario."],
+    ayudas: ["Ayudas socioeconómicas", "Becas y ayudas socioeconómicas dirigidas a estudiantes que requieren apoyo para continuar sus estudios."],
     "planif-actividades": ["Planificación de actividades", "Cronograma de actividades culturales, deportivas y de bienestar estudiantil."],
     lotaip: ["LOTAIP", "Información pública mensual publicada conforme a la Ley Orgánica de Transparencia y Acceso a la Información Pública."],
     rendicion: ["Rendición de cuentas", "Informes anuales de gestión institucional presentados a la comunidad universitaria."],
@@ -295,7 +294,7 @@
     { id: "posgrado", chips: "Posgrado", kw: ["posgrado", "maestria", "maestrias"], a: "La oferta de maestrías está en Oferta académica → Posgrado, con enlace directo al sitio de posgrados." },
     { id: "investigacion", chips: "Investigación", kw: ["investigacion", "cidu", "proyectos", "cientifica", "publicaciones", "revistas"], a: "La sección Investigación reúne la producción científica, las revistas indexadas y los proyectos de investigación de la UTEQ." },
     { id: "vinculacion", chips: "Vinculación", kw: ["vinculacion", "convenio", "convenios", "tramite de vinculacion", "seguimiento", "informe de vinculacion"], a: "Vinculación reúne convenios, trámites de vinculación y el seguimiento e informes de los proyectos con la comunidad. Hay 121 convenios activos." },
-    { id: "bienestar", chips: "Bienestar", kw: ["bienestar", "beca", "becas", "psicologia", "salud estudiantil", "arrendamiento", "ergonomica", "actividades"], a: "Bienestar Universitario incluye servicios estudiantiles, ayudas económicas y ergonómicas, arrendamientos de espacios y planificación de actividades." },
+    { id: "bienestar", chips: "Bienestar", kw: ["bienestar", "beca", "becas", "socioeconomica", "psicologia", "salud estudiantil", "actividades"], a: "Bienestar Universitario incluye servicios estudiantiles, ayudas socioeconómicas y planificación de actividades." },
     { id: "transparencia", chips: "Transparencia", kw: ["transparencia", "lotaip", "rendicion de cuentas", "presupuesto", "contratacion publica"], a: "Transparencia reúne la LOTAIP, la rendición de cuentas y los datos institucionales, según la Ley Orgánica de Transparencia y Acceso a la Información Pública." },
     { id: "contacto", chips: "Contacto", kw: ["contacto", "telefono", "correo", "email", "escribir", "llamar", "numero"], a: "Puedes escribirnos a relacionespublicas@uteq.edu.ec o llamar al (05) 3-001-500, de lunes a viernes." },
     { id: "biblioteca", chips: "Biblioteca", kw: ["biblioteca", "libros", "catalogo"], a: "La Biblioteca General tiene su propio sitio en biblioteca.uteq.edu.ec, enlazado desde la barra superior y el menú Servicios." }
