@@ -164,6 +164,19 @@
   $("#heroNext").addEventListener("click", function () { goToSlide(heroIdx + 1); restartAutoplay(); });
   restartAutoplay();
 
+  /* ---------- mini-carrusel de fotos en las tarjetas de carreras ---------- */
+  $all("#carreras a.group").forEach(function (card, ci) {
+    var ccSlides = $all(".cc-slide", card);
+    var ccDots = $all(".cc-dots span", card);
+    if (ccSlides.length < 2) return;
+    var ccIdx = 0;
+    setInterval(function () {
+      ccIdx = (ccIdx + 1) % ccSlides.length;
+      ccSlides.forEach(function (s, i) { s.classList.toggle("active", i === ccIdx); });
+      ccDots.forEach(function (d, i) { d.classList.toggle("active", i === ccIdx); });
+    }, 3800 + ci * 240); // pequeño desfase para que no cambien todas a la vez
+  });
+
   /* ---------- agenda: mini calendario ---------- */
   var calMonths = [
     { label: "Junio 2026", year: 2026, month: 5, firstWeekdayMon0: 0, days: 30, events: [20] },
