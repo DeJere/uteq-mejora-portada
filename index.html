@@ -14,15 +14,15 @@
 </head>
 <body class="bg-white text-gray-900">
 
-<!-- ================= BARRA SUPERIOR DE UTILIDADES ================= -->
+<!-- ================= BARRA SUPERIOR DE UTILIDADES (reducida) =================
+     Antes: 2 barras de navegación simultáneas (más de 10 opciones combinadas).
+     Ahora: una sola barra de utilidades (correo + idioma), sin enlaces de navegación
+     duplicados — todo lo demás vive en el único menú principal de abajo. -->
 <div class="bg-[#0d3d24] text-emerald-50/90 relative z-[60]">
   <div class="max-w-7xl mx-auto px-4 h-9 flex items-center text-[12px]">
     <div class="flex items-center gap-5 whitespace-nowrap overflow-x-auto sin-barra min-w-0 flex-1">
-    <button data-info="correo" class="flex items-center gap-1.5 hover:text-amber-300 transition-colors shrink-0 cursor-pointer"><i class="fas fa-envelope text-[11px]"></i>Correo institucional</button>
-    <a href="https://sga.uteq.edu.ec/" target="_blank" rel="noopener" class="flex items-center gap-1.5 hover:text-amber-300 transition-colors shrink-0"><i class="fas fa-display text-[11px]"></i>Aula Virtual</a>
-    <a href="https://biblioteca.uteq.edu.ec/" target="_blank" rel="noopener" class="flex items-center gap-1.5 hover:text-amber-300 transition-colors shrink-0"><i class="fas fa-book-open text-[11px]"></i>Biblioteca</a>
-    <a href="#transparencia" class="flex items-center gap-1.5 hover:text-amber-300 transition-colors shrink-0"><i class="fas fa-shield-halved text-[11px]"></i>Transparencia</a>
-    <a href="#contacto" class="flex items-center gap-1.5 hover:text-amber-300 transition-colors shrink-0"><i class="fas fa-phone text-[11px]"></i>Contacto</a>
+      <button data-info="correo" class="flex items-center gap-1.5 hover:text-amber-300 transition-colors shrink-0 cursor-pointer"><i class="fas fa-envelope text-[11px]"></i>Correo institucional</button>
+      <span class="hidden md:flex items-center gap-1.5 shrink-0 text-emerald-50/60"><i class="fas fa-clipboard-check text-[10px]"></i>Portada reorganizada según estudio de usabilidad DTPO-UTEQ (jun–jul 2026)</span>
     </div>
     <div class="relative shrink-0 pl-4">
       <button id="langToggle" aria-haspopup="true" aria-expanded="false" class="flex items-center gap-1.5 hover:text-amber-300 transition-colors font-semibold"><span id="langLabel">ES</span><i class="fas fa-chevron-down text-[8px] transition-transform"></i></button>
@@ -34,7 +34,11 @@
   </div>
 </div>
 
-<!-- ================= HEADER / MENÚ PRINCIPAL ================= -->
+<!-- ================= HEADER / MENÚ PRINCIPAL =================
+     Único menú, 6 botones ordenados por prioridad según la encuesta (P7/P8, n=30):
+     1 Carreras (77%) · 2 Admisión (50%) · 3 Estudiantes (trámites 47% + vida estudiantil 30%)
+     4 Investigación (23% + vinculación/convenios 33%) · 5 Noticias (30%) · 6 Contacto (P11–P12).
+     Campus Virtual (SGA) queda fijo en la cabecera, como acceso permanente. -->
 <header class="sticky top-0 z-50 bg-white shadow-sm">
   <div class="max-w-7xl mx-auto px-4 flex items-center gap-3 h-[72px]">
     <a href="#inicio" class="flex items-center shrink-0" aria-label="UTEQ — Inicio">
@@ -46,62 +50,76 @@
     <nav class="hidden xl:flex items-center gap-0 ml-3 text-[12.5px] font-bold text-gray-700 tracking-tight whitespace-nowrap">
       <a href="#inicio" class="px-2.5 py-2.5 rounded-lg hover:bg-emerald-50 hover:text-[#14603a] transition-colors whitespace-nowrap">INICIO</a>
 
+      <!-- 1 · CARRERAS (77% en P7 — sección más buscada al entrar, P5) -->
       <div class="nav-item relative">
-        <button type="button" class="nav-btn px-2.5 py-2.5 rounded-lg hover:bg-emerald-50 hover:text-[#14603a] transition-colors flex items-center gap-1.5 whitespace-nowrap">LA UTEQ <i class="fas fa-chevron-down chev text-[9px] transition-transform"></i></button>
-        <div class="mega absolute left-0 top-full mt-1 w-64 bg-white rounded-xl shadow-2xl border border-gray-100 p-2 text-[13px] font-semibold text-gray-700 normal-case">
-          <button data-info="autoridades" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-emerald-50 flex items-center gap-2.5"><i class="fas fa-shield-halved text-[#14603a] w-4"></i>Autoridades</button>
-          <button data-info="normativa" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-emerald-50 flex items-center gap-2.5"><i class="fas fa-clipboard-list text-[#14603a] w-4"></i>Normativa institucional</button>
-          <button data-info="planificacion" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-emerald-50 flex items-center gap-2.5"><i class="fas fa-file-lines text-[#14603a] w-4"></i>Planificación estratégica</button>
-          <button data-info="identidad" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-emerald-50 flex items-center gap-2.5"><i class="fas fa-book-open text-[#14603a] w-4"></i>Identidad corporativa</button>
-          <a href="#universidad" class="block px-3 py-2 mt-1 border-t border-gray-100 text-[#14603a] text-xs">Ver sección completa →</a>
-        </div>
-      </div>
-
-      <div class="nav-item relative">
-        <button type="button" class="nav-btn px-2.5 py-2.5 rounded-lg hover:bg-emerald-50 hover:text-[#14603a] transition-colors flex items-center gap-1.5 whitespace-nowrap">OFERTA ACADÉMICA <i class="fas fa-chevron-down chev text-[9px] transition-transform"></i></button>
+        <button type="button" class="nav-btn px-2.5 py-2.5 rounded-lg hover:bg-emerald-50 hover:text-[#14603a] transition-colors flex items-center gap-1.5 whitespace-nowrap">CARRERAS <i class="fas fa-chevron-down chev text-[9px] transition-transform"></i></button>
         <div class="mega absolute left-0 top-full mt-1 w-64 bg-white rounded-xl shadow-2xl border border-gray-100 p-2 text-[13px] font-semibold text-gray-700 normal-case">
           <a href="#carreras" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-emerald-50 flex items-center gap-2.5"><i class="fas fa-graduation-cap text-[#14603a] w-4"></i>Carreras de grado</a>
-          <a href="#admision" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-emerald-50 flex items-center gap-2.5"><i class="fas fa-file-signature text-[#14603a] w-4"></i>Admisión</a>
           <a href="https://www.uteq.edu.ec/es/posgrado" target="_blank" rel="noopener" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-emerald-50 flex items-center gap-2.5"><i class="fas fa-user-graduate text-[#14603a] w-4"></i>Posgrado</a>
           <button data-info="educacion-continua" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-emerald-50 flex items-center gap-2.5"><i class="fas fa-chalkboard-user text-[#14603a] w-4"></i>Educación continua</button>
+          <a href="https://www.uteq.edu.ec/es/grado/carreras" target="_blank" rel="noopener" class="block px-3 py-2 mt-1 border-t border-gray-100 text-[#14603a] text-xs">Ver las 39 carreras en uteq.edu.ec →</a>
         </div>
       </div>
 
+      <!-- 2 · ADMISIÓN (50% en P7 — binomio preferido con Carreras, 40% en P8) -->
+      <div class="nav-item relative">
+        <button type="button" class="nav-btn px-2.5 py-2.5 rounded-lg hover:bg-emerald-50 hover:text-[#14603a] transition-colors flex items-center gap-1.5 whitespace-nowrap">ADMISIÓN <i class="fas fa-chevron-down chev text-[9px] transition-transform"></i></button>
+        <div class="mega absolute left-0 top-full mt-1 w-64 bg-white rounded-xl shadow-2xl border border-gray-100 p-2 text-[13px] font-semibold text-gray-700 normal-case">
+          <a href="#admision" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-emerald-50 flex items-center gap-2.5"><i class="fas fa-file-signature text-[#14603a] w-4"></i>Proceso de admisión</a>
+          <a href="https://www.uteq.edu.ec/es/admision" target="_blank" rel="noopener" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-emerald-50 flex items-center gap-2.5"><i class="fas fa-list-check text-[#14603a] w-4"></i>Requisitos y cronograma</a>
+          <a href="https://postulate.uteq.edu.ec/" target="_blank" rel="noopener" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-emerald-50 flex items-center gap-2.5"><i class="fas fa-arrow-up-right-from-square text-[#14603a] w-4"></i>Portal de postulación</a>
+          <a href="https://www.uteq.edu.ec/es/admision" target="_blank" rel="noopener" class="block px-3 py-2 mt-1 border-t border-gray-100 text-[#14603a] text-xs">Postúlate ahora →</a>
+        </div>
+      </div>
+
+      <!-- 3 · ESTUDIANTES (trámites 47% + vida estudiantil 30% — no se lograban ubicar) -->
+      <div class="nav-item relative">
+        <button type="button" class="nav-btn px-2.5 py-2.5 rounded-lg hover:bg-emerald-50 hover:text-[#14603a] transition-colors flex items-center gap-1.5 whitespace-nowrap">ESTUDIANTES <i class="fas fa-chevron-down chev text-[9px] transition-transform"></i></button>
+        <div class="mega absolute left-0 top-full mt-1 w-72 bg-white rounded-xl shadow-2xl border border-gray-100 p-2 text-[13px] font-semibold text-gray-700 normal-case">
+          <a href="https://sga.uteq.edu.ec/" target="_blank" rel="noopener" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-emerald-50 flex items-center gap-2.5"><i class="fas fa-display text-[#14603a] w-4"></i>Aula Virtual (SGA)</a>
+          <a href="https://biblioteca.uteq.edu.ec/" target="_blank" rel="noopener" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-emerald-50 flex items-center gap-2.5"><i class="fas fa-book-open text-[#14603a] w-4"></i>Biblioteca</a>
+          <a href="#bienestar" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-emerald-50 flex items-center gap-2.5"><i class="fas fa-heart text-[#14603a] w-4"></i>Bienestar universitario</a>
+          <button data-info="ayudas" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-emerald-50 flex items-center gap-2.5"><i class="fas fa-hand-holding-dollar text-[#14603a] w-4"></i>Becas y ayudas socioeconómicas</button>
+          <a href="#vinculacion" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-emerald-50 flex items-center gap-2.5"><i class="fas fa-file-lines text-[#14603a] w-4"></i>Trámites de vinculación</a>
+          <a href="#bienestar" class="block px-3 py-2 mt-1 border-t border-gray-100 text-[#14603a] text-xs">Ver todos los servicios →</a>
+        </div>
+      </div>
+
+      <!-- 4 · INVESTIGACIÓN (23% + vinculación/convenios 33%, agrupadas según la propuesta) -->
       <div class="nav-item relative">
         <button type="button" class="nav-btn px-2.5 py-2.5 rounded-lg hover:bg-emerald-50 hover:text-[#14603a] transition-colors flex items-center gap-1.5 whitespace-nowrap">INVESTIGACIÓN <i class="fas fa-chevron-down chev text-[9px] transition-transform"></i></button>
-        <div class="mega absolute left-0 top-full mt-1 w-64 bg-white rounded-xl shadow-2xl border border-gray-100 p-2 text-[13px] font-semibold text-gray-700 normal-case">
+        <div class="mega absolute left-0 top-full mt-1 w-72 bg-white rounded-xl shadow-2xl border border-gray-100 p-2 text-[13px] font-semibold text-gray-700 normal-case">
           <a href="#investigacion" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-emerald-50 flex items-center gap-2.5"><i class="fas fa-flask text-[#14603a] w-4"></i>Producción científica</a>
-          <a href="https://revistas.uteq.edu.ec/index.php/cyt" target="_blank" rel="noopener" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-emerald-50 flex items-center gap-2.5"><i class="fas fa-newspaper text-[#14603a] w-4"></i>Revistas científicas</a>
           <a href="https://www.uteq.edu.ec/es/investigacion" target="_blank" rel="noopener" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-emerald-50 flex items-center gap-2.5"><i class="fas fa-microscope text-[#14603a] w-4"></i>Sitio de Investigación (CIDU)</a>
+          <a href="https://revistas.uteq.edu.ec/index.php/cyt" target="_blank" rel="noopener" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-emerald-50 flex items-center gap-2.5"><i class="fas fa-newspaper text-[#14603a] w-4"></i>Revistas científicas</a>
+          <a href="#vinculacion" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-emerald-50 flex items-center gap-2.5"><i class="fas fa-handshake text-[#14603a] w-4"></i>Vinculación y convenios</a>
+          <a href="#investigacion" class="block px-3 py-2 mt-1 border-t border-gray-100 text-[#14603a] text-xs">Ver sección completa →</a>
         </div>
       </div>
 
+      <!-- 5 · NOTICIAS (contenido buscado con frecuencia — 30% de menciones en P7) -->
       <div class="nav-item relative">
-        <button type="button" class="nav-btn px-2.5 py-2.5 rounded-lg hover:bg-emerald-50 hover:text-[#14603a] transition-colors flex items-center gap-1.5 whitespace-nowrap">VINCULACIÓN <i class="fas fa-chevron-down chev text-[9px] transition-transform"></i></button>
-        <div class="mega absolute left-0 top-full mt-1 w-64 bg-white rounded-xl shadow-2xl border border-gray-100 p-2 text-[13px] font-semibold text-gray-700 normal-case">
-          <button data-info="convenios" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-emerald-50 flex items-center gap-2.5"><i class="fas fa-handshake text-[#14603a] w-4"></i>Convenios</button>
-          <button data-info="tramite-vinc" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-emerald-50 flex items-center gap-2.5"><i class="fas fa-file-lines text-[#14603a] w-4"></i>Trámites de vinculación</button>
-          <button data-info="seguimiento" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-emerald-50 flex items-center gap-2.5"><i class="fas fa-clipboard-list text-[#14603a] w-4"></i>Seguimiento e informes</button>
-          <a href="#vinculacion" class="block px-3 py-2 mt-1 border-t border-gray-100 text-[#14603a] text-xs">Ver sección completa →</a>
+        <button type="button" class="nav-btn px-2.5 py-2.5 rounded-lg hover:bg-emerald-50 hover:text-[#14603a] transition-colors flex items-center gap-1.5 whitespace-nowrap">NOTICIAS <i class="fas fa-chevron-down chev text-[9px] transition-transform"></i></button>
+        <div class="mega absolute left-0 top-full mt-1 w-60 bg-white rounded-xl shadow-2xl border border-gray-100 p-2 text-[13px] font-semibold text-gray-700 normal-case">
+          <a href="#noticias" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-emerald-50 flex items-center gap-2.5"><i class="fas fa-newspaper text-[#14603a] w-4"></i>Noticias destacadas</a>
+          <a href="https://www.uteq.edu.ec/es/comunicacion" target="_blank" rel="noopener" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-emerald-50 flex items-center gap-2.5"><i class="fas fa-newspaper text-[#14603a] w-4"></i>Todas las noticias</a>
+          <a href="#agenda" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-emerald-50 flex items-center gap-2.5"><i class="fas fa-calendar-days text-[#14603a] w-4"></i>Próximas fechas</a>
         </div>
       </div>
 
+      <!-- 6 · CONTACTO (canal de atención pedido en P11–P12) — incluye "La UTEQ" para no perder ese contenido -->
       <div class="nav-item relative">
-        <button type="button" class="nav-btn px-2.5 py-2.5 rounded-lg hover:bg-emerald-50 hover:text-[#14603a] transition-colors flex items-center gap-1.5 whitespace-nowrap">SERVICIOS <i class="fas fa-chevron-down chev text-[9px] transition-transform"></i></button>
-        <div class="mega absolute left-0 top-full mt-1 w-64 bg-white rounded-xl shadow-2xl border border-gray-100 p-2 text-[13px] font-semibold text-gray-700 normal-case">
-          <a href="#bienestar" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-emerald-50 flex items-center gap-2.5"><i class="fas fa-heart text-[#14603a] w-4"></i>Bienestar universitario</a>
-          <a href="https://biblioteca.uteq.edu.ec/" target="_blank" rel="noopener" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-emerald-50 flex items-center gap-2.5"><i class="fas fa-book-open text-[#14603a] w-4"></i>Biblioteca</a>
-          <a href="https://sga.uteq.edu.ec/" target="_blank" rel="noopener" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-emerald-50 flex items-center gap-2.5"><i class="fas fa-display text-[#14603a] w-4"></i>Aula Virtual (SGA)</a>
-          <a href="#transparencia" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-emerald-50 flex items-center gap-2.5"><i class="fas fa-shield-halved text-[#14603a] w-4"></i>Transparencia</a>
-        </div>
-      </div>
-
-      <div class="nav-item relative">
-        <button type="button" class="nav-btn px-2.5 py-2.5 rounded-lg hover:bg-emerald-50 hover:text-[#14603a] transition-colors flex items-center gap-1.5 whitespace-nowrap">COMUNICACIÓN <i class="fas fa-chevron-down chev text-[9px] transition-transform"></i></button>
-        <div class="mega absolute left-0 top-full mt-1 w-56 bg-white rounded-xl shadow-2xl border border-gray-100 p-2 text-[13px] font-semibold text-gray-700 normal-case">
-          <a href="#noticias" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-emerald-50 flex items-center gap-2.5"><i class="fas fa-newspaper text-[#14603a] w-4"></i>Noticias</a>
-          <a href="#agenda" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-emerald-50 flex items-center gap-2.5"><i class="fas fa-calendar-days text-[#14603a] w-4"></i>Agenda</a>
-          <a href="#contacto" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-emerald-50 flex items-center gap-2.5"><i class="fas fa-phone text-[#14603a] w-4"></i>Contacto</a>
+        <button type="button" class="nav-btn px-2.5 py-2.5 rounded-lg hover:bg-emerald-50 hover:text-[#14603a] transition-colors flex items-center gap-1.5 whitespace-nowrap">CONTACTO <i class="fas fa-chevron-down chev text-[9px] transition-transform"></i></button>
+        <div class="mega absolute right-0 top-full mt-1 w-64 bg-white rounded-xl shadow-2xl border border-gray-100 p-2 text-[13px] font-semibold text-gray-700 normal-case">
+          <a href="#contacto" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-emerald-50 flex items-center gap-2.5"><i class="fas fa-envelope text-[#14603a] w-4"></i>Escríbenos</a>
+          <a href="#transparencia" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-emerald-50 flex items-center gap-2.5"><i class="fas fa-shield-halved text-[#14603a] w-4"></i>Transparencia (LOTAIP)</a>
+          <div class="border-t border-gray-100 mt-1 pt-1">
+            <span class="block px-3 pt-1 pb-1.5 text-[10.5px] font-bold tracking-widest uppercase text-gray-400">La Universidad</span>
+            <button data-info="autoridades" class="w-full text-left px-3 py-2 rounded-lg hover:bg-emerald-50 flex items-center gap-2.5"><i class="fas fa-shield-halved text-[#14603a] w-4"></i>Autoridades</button>
+            <button data-info="normativa" class="w-full text-left px-3 py-2 rounded-lg hover:bg-emerald-50 flex items-center gap-2.5"><i class="fas fa-clipboard-list text-[#14603a] w-4"></i>Normativa institucional</button>
+            <button data-info="planificacion" class="w-full text-left px-3 py-2 rounded-lg hover:bg-emerald-50 flex items-center gap-2.5"><i class="fas fa-file-lines text-[#14603a] w-4"></i>Planificación estratégica</button>
+            <button data-info="identidad" class="w-full text-left px-3 py-2 rounded-lg hover:bg-emerald-50 flex items-center gap-2.5"><i class="fas fa-book-open text-[#14603a] w-4"></i>Identidad corporativa</button>
+          </div>
         </div>
       </div>
     </nav>
@@ -139,59 +157,64 @@
     <a href="#inicio" class="block px-3 py-3 rounded-lg hover:bg-emerald-50">Inicio</a>
 
     <div class="m-acc-item border-t border-gray-100">
-      <button type="button" class="m-acc-btn w-full flex items-center justify-between px-3 py-3 rounded-lg hover:bg-emerald-50"><span>La UTEQ</span><i class="fas fa-chevron-down chev text-[10px] transition-transform"></i></button>
-      <div class="m-acc-body px-3 pb-2 space-y-1 font-medium text-gray-600">
-        <button data-info="autoridades" class="block w-full text-left py-2">Autoridades</button>
-        <button data-info="normativa" class="block w-full text-left py-2">Normativa institucional</button>
-        <button data-info="planificacion" class="block w-full text-left py-2">Planificación estratégica</button>
-        <button data-info="identidad" class="block w-full text-left py-2">Identidad corporativa</button>
-      </div>
-    </div>
-
-    <div class="m-acc-item border-t border-gray-100">
-      <button type="button" class="m-acc-btn w-full flex items-center justify-between px-3 py-3 rounded-lg hover:bg-emerald-50"><span>Oferta académica</span><i class="fas fa-chevron-down chev text-[10px] transition-transform"></i></button>
+      <button type="button" class="m-acc-btn w-full flex items-center justify-between px-3 py-3 rounded-lg hover:bg-emerald-50"><span>1 · Carreras</span><i class="fas fa-chevron-down chev text-[10px] transition-transform"></i></button>
       <div class="m-acc-body px-3 pb-2 space-y-1 font-medium text-gray-600">
         <a href="#carreras" class="block py-2">Carreras de grado</a>
-        <a href="#admision" class="block py-2">Admisión</a>
         <a href="https://www.uteq.edu.ec/es/posgrado" target="_blank" rel="noopener" class="block py-2">Posgrado</a>
         <button data-info="educacion-continua" class="block w-full text-left py-2">Educación continua</button>
+        <a href="https://www.uteq.edu.ec/es/grado/carreras" target="_blank" rel="noopener" class="block py-2">Ver las 39 carreras →</a>
       </div>
     </div>
 
     <div class="m-acc-item border-t border-gray-100">
-      <button type="button" class="m-acc-btn w-full flex items-center justify-between px-3 py-3 rounded-lg hover:bg-emerald-50"><span>Investigación</span><i class="fas fa-chevron-down chev text-[10px] transition-transform"></i></button>
+      <button type="button" class="m-acc-btn w-full flex items-center justify-between px-3 py-3 rounded-lg hover:bg-emerald-50"><span>2 · Admisión</span><i class="fas fa-chevron-down chev text-[10px] transition-transform"></i></button>
+      <div class="m-acc-body px-3 pb-2 space-y-1 font-medium text-gray-600">
+        <a href="#admision" class="block py-2">Proceso de admisión</a>
+        <a href="https://www.uteq.edu.ec/es/admision" target="_blank" rel="noopener" class="block py-2">Requisitos y cronograma</a>
+        <a href="https://postulate.uteq.edu.ec/" target="_blank" rel="noopener" class="block py-2">Portal de postulación</a>
+      </div>
+    </div>
+
+    <div class="m-acc-item border-t border-gray-100">
+      <button type="button" class="m-acc-btn w-full flex items-center justify-between px-3 py-3 rounded-lg hover:bg-emerald-50"><span>3 · Estudiantes</span><i class="fas fa-chevron-down chev text-[10px] transition-transform"></i></button>
+      <div class="m-acc-body px-3 pb-2 space-y-1 font-medium text-gray-600">
+        <a href="https://sga.uteq.edu.ec/" target="_blank" rel="noopener" class="block py-2">Aula Virtual (SGA)</a>
+        <a href="https://biblioteca.uteq.edu.ec/" target="_blank" rel="noopener" class="block py-2">Biblioteca</a>
+        <a href="#bienestar" class="block py-2">Bienestar universitario</a>
+        <button data-info="ayudas" class="block w-full text-left py-2">Becas y ayudas socioeconómicas</button>
+        <a href="#vinculacion" class="block py-2">Trámites de vinculación</a>
+      </div>
+    </div>
+
+    <div class="m-acc-item border-t border-gray-100">
+      <button type="button" class="m-acc-btn w-full flex items-center justify-between px-3 py-3 rounded-lg hover:bg-emerald-50"><span>4 · Investigación</span><i class="fas fa-chevron-down chev text-[10px] transition-transform"></i></button>
       <div class="m-acc-body px-3 pb-2 space-y-1 font-medium text-gray-600">
         <a href="#investigacion" class="block py-2">Producción científica</a>
+        <a href="https://www.uteq.edu.ec/es/investigacion" target="_blank" rel="noopener" class="block py-2">Sitio de Investigación (CIDU)</a>
         <a href="https://revistas.uteq.edu.ec/index.php/cyt" target="_blank" rel="noopener" class="block py-2">Revistas científicas</a>
-        <a href="https://www.uteq.edu.ec/es/investigacion" target="_blank" rel="noopener" class="block py-2">Sitio de Investigación</a>
+        <a href="#vinculacion" class="block py-2">Vinculación y convenios</a>
       </div>
     </div>
 
     <div class="m-acc-item border-t border-gray-100">
-      <button type="button" class="m-acc-btn w-full flex items-center justify-between px-3 py-3 rounded-lg hover:bg-emerald-50"><span>Vinculación</span><i class="fas fa-chevron-down chev text-[10px] transition-transform"></i></button>
+      <button type="button" class="m-acc-btn w-full flex items-center justify-between px-3 py-3 rounded-lg hover:bg-emerald-50"><span>5 · Noticias</span><i class="fas fa-chevron-down chev text-[10px] transition-transform"></i></button>
       <div class="m-acc-body px-3 pb-2 space-y-1 font-medium text-gray-600">
-        <button data-info="convenios" class="block w-full text-left py-2">Convenios</button>
-        <button data-info="tramite-vinc" class="block w-full text-left py-2">Trámites de vinculación</button>
-        <button data-info="seguimiento" class="block w-full text-left py-2">Seguimiento e informes</button>
-      </div>
-    </div>
-
-    <div class="m-acc-item border-t border-gray-100">
-      <button type="button" class="m-acc-btn w-full flex items-center justify-between px-3 py-3 rounded-lg hover:bg-emerald-50"><span>Servicios</span><i class="fas fa-chevron-down chev text-[10px] transition-transform"></i></button>
-      <div class="m-acc-body px-3 pb-2 space-y-1 font-medium text-gray-600">
-        <a href="#bienestar" class="block py-2">Bienestar universitario</a>
-        <a href="https://biblioteca.uteq.edu.ec/" target="_blank" rel="noopener" class="block py-2">Biblioteca</a>
-        <a href="https://sga.uteq.edu.ec/" target="_blank" rel="noopener" class="block py-2">Aula Virtual (SGA)</a>
-        <a href="#transparencia" class="block py-2">Transparencia</a>
+        <a href="#noticias" class="block py-2">Noticias destacadas</a>
+        <a href="https://www.uteq.edu.ec/es/comunicacion" target="_blank" rel="noopener" class="block py-2">Todas las noticias</a>
+        <a href="#agenda" class="block py-2">Próximas fechas</a>
       </div>
     </div>
 
     <div class="m-acc-item border-t border-b border-gray-100">
-      <button type="button" class="m-acc-btn w-full flex items-center justify-between px-3 py-3 rounded-lg hover:bg-emerald-50"><span>Comunicación</span><i class="fas fa-chevron-down chev text-[10px] transition-transform"></i></button>
+      <button type="button" class="m-acc-btn w-full flex items-center justify-between px-3 py-3 rounded-lg hover:bg-emerald-50"><span>6 · Contacto</span><i class="fas fa-chevron-down chev text-[10px] transition-transform"></i></button>
       <div class="m-acc-body px-3 pb-2 space-y-1 font-medium text-gray-600">
-        <a href="#noticias" class="block py-2">Noticias</a>
-        <a href="#agenda" class="block py-2">Agenda</a>
-        <a href="#contacto" class="block py-2">Contacto</a>
+        <a href="#contacto" class="block py-2">Escríbenos</a>
+        <a href="#transparencia" class="block py-2">Transparencia (LOTAIP)</a>
+        <span class="block pt-2 text-[10.5px] font-bold tracking-widest uppercase text-gray-400">La Universidad</span>
+        <button data-info="autoridades" class="block w-full text-left py-2">Autoridades</button>
+        <button data-info="normativa" class="block w-full text-left py-2">Normativa institucional</button>
+        <button data-info="planificacion" class="block w-full text-left py-2">Planificación estratégica</button>
+        <button data-info="identidad" class="block w-full text-left py-2">Identidad corporativa</button>
       </div>
     </div>
   </nav>
@@ -220,8 +243,8 @@
       <h1 class="font-display font-extrabold text-4xl sm:text-5xl lg:text-[3.2rem] leading-[1.1] tracking-tight">Formamos profesionales que <span class="text-amber-300">transforman el Ecuador</span></h1>
       <p class="mt-5 max-w-lg text-emerald-50/90 text-lg">Educación superior pública, inclusiva y de calidad, con innovación, investigación y compromiso con la sociedad.</p>
       <div class="mt-8 flex flex-wrap gap-3">
-        <a href="#universidad" class="bg-amber-400 hover:bg-amber-300 text-[#0d3d24] font-bold px-7 py-3.5 rounded-full transition-transform hover:-translate-y-0.5 shadow-lg shadow-black/20">Conoce la UTEQ</a>
-        <a href="#carreras" class="border border-white/50 hover:bg-white/10 text-white font-semibold px-6 py-3.5 rounded-full transition-colors">Oferta académica</a>
+        <a href="https://www.uteq.edu.ec/es/admision" target="_blank" rel="noopener" class="bg-amber-400 hover:bg-amber-300 text-[#0d3d24] font-bold px-7 py-3.5 rounded-full transition-transform hover:-translate-y-0.5 shadow-lg shadow-black/20 flex items-center gap-2"><i class="fas fa-file-signature text-sm"></i>Postúlate ahora</a>
+        <a href="#carreras" class="border border-white/50 hover:bg-white/10 text-white font-semibold px-6 py-3.5 rounded-full transition-colors">Ver carreras</a>
       </div>
     </div>
   </div>
@@ -289,7 +312,7 @@
 <!-- ================= ESTUDIA CON NOSOTROS ================= -->
 <section id="universidad" class="py-16">
   <div class="max-w-7xl mx-auto px-4">
-    <span class="text-xs font-bold tracking-[0.12em] uppercase text-[#14603a]">Oferta académica</span>
+    <span class="text-xs font-bold tracking-[0.12em] uppercase text-[#14603a]">1 · Carreras</span>
     <h2 class="font-display font-extrabold text-2xl sm:text-3xl mt-1.5 mb-6">Estudia con nosotros</h2>
 
     <div class="rounded-2xl overflow-hidden relative isolate min-h-[150px] flex items-center px-8 mb-8" style="background-image:url('https://www.uteq.edu.ec/assets/images/front-pages/imagen_historia_uteq_es.jpg');background-size:cover;background-position:center;">
@@ -318,41 +341,65 @@
       </button>
     </div>
 
-    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4" id="carreras">
-      <a href="https://www.uteq.edu.ec/es/grado/carreras" target="_blank" rel="noopener" class="group relative h-56 rounded-2xl overflow-hidden bg-[#0d3d24] flex flex-col">
-        <img src="assets/career_industrial.png" alt="Ciencias de la Computación — oferta académica UTEQ" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4" id="carreras">
+      <a href="https://www.uteq.edu.ec/es/grado/carrera/software" target="_blank" rel="noopener" class="group relative h-56 rounded-2xl overflow-hidden bg-[#0d3d24] flex flex-col">
+        <img src="https://www.uteq.edu.ec/assets/images/front-pages/software_uteq_es.jpg" alt="Ingeniería en Software — carrera UTEQ" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
-        <span class="mt-auto relative z-10 p-4 text-white font-display font-bold text-sm leading-snug">Ciencias de la Computación</span>
+        <span class="mt-auto relative z-10 p-4 text-white font-display font-bold text-sm leading-snug">Ingeniería en Software</span>
         <span class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-amber-400 text-[#0d3d24] flex items-center justify-center group-hover:bg-white transition-colors"><i class="fas fa-arrow-right text-xs"></i></span>
       </a>
-      <a href="https://www.uteq.edu.ec/es/grado/carreras" target="_blank" rel="noopener" class="group relative h-56 rounded-2xl overflow-hidden bg-[#0d3d24] flex flex-col">
-        <img src="assets/career_civil.png" alt="Ingenierías — oferta académica UTEQ" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+      <a href="https://www.uteq.edu.ec/es/grado/carrera/ingenieria-civil" target="_blank" rel="noopener" class="group relative h-56 rounded-2xl overflow-hidden bg-[#0d3d24] flex flex-col">
+        <img src="https://www.uteq.edu.ec/assets/images/front-pages/carrera-ingenieria-civil-uteq-frontpg.jpg" alt="Ingeniería Civil — carrera UTEQ" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
-        <span class="mt-auto relative z-10 p-4 text-white font-display font-bold text-sm leading-snug">Ingenierías</span>
+        <span class="mt-auto relative z-10 p-4 text-white font-display font-bold text-sm leading-snug">Ingeniería Civil</span>
         <span class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-amber-400 text-[#0d3d24] flex items-center justify-center group-hover:bg-white transition-colors"><i class="fas fa-arrow-right text-xs"></i></span>
       </a>
-      <a href="https://www.uteq.edu.ec/es/grado/carreras" target="_blank" rel="noopener" class="group relative h-56 rounded-2xl overflow-hidden bg-[#0d3d24] flex flex-col">
-        <img src="assets/career_forestal.png" alt="Ciencias Agrarias — oferta académica UTEQ" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+      <a href="https://www.uteq.edu.ec/es/grado/carrera/ingenieria-ambiental" target="_blank" rel="noopener" class="group relative h-56 rounded-2xl overflow-hidden bg-[#0d3d24] flex flex-col">
+        <img src="https://www.uteq.edu.ec/assets/images/front-pages/ingenieria_ambiental_uteq_es.jpg" alt="Ingeniería Ambiental — carrera UTEQ" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
-        <span class="mt-auto relative z-10 p-4 text-white font-display font-bold text-sm leading-snug">Ciencias Agrarias</span>
+        <span class="mt-auto relative z-10 p-4 text-white font-display font-bold text-sm leading-snug">Ingeniería Ambiental</span>
         <span class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-amber-400 text-[#0d3d24] flex items-center justify-center group-hover:bg-white transition-colors"><i class="fas fa-arrow-right text-xs"></i></span>
       </a>
-      <a href="https://www.uteq.edu.ec/es/grado/carreras" target="_blank" rel="noopener" class="group relative h-56 rounded-2xl overflow-hidden bg-[#0d3d24] flex flex-col">
-        <img src="assets/career_ambiental.png" alt="Ciencias Empresariales — oferta académica UTEQ" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+      <a href="https://www.uteq.edu.ec/es/grado/carrera/agronomia" target="_blank" rel="noopener" class="group relative h-56 rounded-2xl overflow-hidden bg-[#0d3d24] flex flex-col">
+        <img src="https://www.uteq.edu.ec/assets/images/front-pages/agronomia_uteq_es.jpg" alt="Agronomía — carrera UTEQ" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
-        <span class="mt-auto relative z-10 p-4 text-white font-display font-bold text-sm leading-snug">Ciencias Empresariales</span>
+        <span class="mt-auto relative z-10 p-4 text-white font-display font-bold text-sm leading-snug">Agronomía</span>
         <span class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-amber-400 text-[#0d3d24] flex items-center justify-center group-hover:bg-white transition-colors"><i class="fas fa-arrow-right text-xs"></i></span>
       </a>
-      <a href="https://www.uteq.edu.ec/es/grado/carreras" target="_blank" rel="noopener" class="group relative h-56 rounded-2xl overflow-hidden bg-[#0d3d24] flex flex-col">
-        <img src="https://www.uteq.edu.ec/assets/img/servicios-universitarios-uteq-es.webp" alt="Ciencias de la Salud — oferta académica UTEQ" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+      <a href="https://www.uteq.edu.ec/es/grado/carrera/enfermeria" target="_blank" rel="noopener" class="group relative h-56 rounded-2xl overflow-hidden bg-[#0d3d24] flex flex-col">
+        <img src="https://www.uteq.edu.ec/assets/images/front-pages/enfermeria_uteq_es.jpg" alt="Enfermería — carrera UTEQ" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
-        <span class="mt-auto relative z-10 p-4 text-white font-display font-bold text-sm leading-snug">Ciencias de la Salud</span>
+        <span class="mt-auto relative z-10 p-4 text-white font-display font-bold text-sm leading-snug">Enfermería</span>
         <span class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-amber-400 text-[#0d3d24] flex items-center justify-center group-hover:bg-white transition-colors"><i class="fas fa-arrow-right text-xs"></i></span>
       </a>
-      <a href="https://www.uteq.edu.ec/es/grado/carreras" target="_blank" rel="noopener" class="group relative h-56 rounded-2xl overflow-hidden bg-[#0d3d24] flex flex-col">
-        <img src="https://www.uteq.edu.ec/assets/images/front-pages/imagen_historia_uteq_es.jpg" alt="Ciencias de la Educación — oferta académica UTEQ" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+      <a href="https://www.uteq.edu.ec/es/grado/carrera/administracion-de-empresas" target="_blank" rel="noopener" class="group relative h-56 rounded-2xl overflow-hidden bg-[#0d3d24] flex flex-col">
+        <img src="https://www.uteq.edu.ec/assets/images/front-pages/administracion_empresas_uteq_es.jpg" alt="Administración de Empresas — carrera UTEQ" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
-        <span class="mt-auto relative z-10 p-4 text-white font-display font-bold text-sm leading-snug">Ciencias de la Educación</span>
+        <span class="mt-auto relative z-10 p-4 text-white font-display font-bold text-sm leading-snug">Administración de Empresas</span>
+        <span class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-amber-400 text-[#0d3d24] flex items-center justify-center group-hover:bg-white transition-colors"><i class="fas fa-arrow-right text-xs"></i></span>
+      </a>
+      <a href="https://www.uteq.edu.ec/es/grado/carrera/contabilidad-y-auditoria" target="_blank" rel="noopener" class="group relative h-56 rounded-2xl overflow-hidden bg-[#0d3d24] flex flex-col">
+        <img src="https://www.uteq.edu.ec/assets/images/front-pages/contabilidad_auditoria_uteq_es.jpg" alt="Contabilidad y Auditoría — carrera UTEQ" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+        <span class="mt-auto relative z-10 p-4 text-white font-display font-bold text-sm leading-snug">Contabilidad y Auditoría</span>
+        <span class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-amber-400 text-[#0d3d24] flex items-center justify-center group-hover:bg-white transition-colors"><i class="fas fa-arrow-right text-xs"></i></span>
+      </a>
+      <a href="https://www.uteq.edu.ec/es/grado/carrera/turismo" target="_blank" rel="noopener" class="group relative h-56 rounded-2xl overflow-hidden bg-[#0d3d24] flex flex-col">
+        <img src="https://www.uteq.edu.ec/assets/images/front-pages/carrera-turismo-uteq-frontpg.webp" alt="Turismo — carrera UTEQ" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+        <span class="mt-auto relative z-10 p-4 text-white font-display font-bold text-sm leading-snug">Turismo</span>
+        <span class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-amber-400 text-[#0d3d24] flex items-center justify-center group-hover:bg-white transition-colors"><i class="fas fa-arrow-right text-xs"></i></span>
+      </a>
+      <a href="https://www.uteq.edu.ec/es/grado/carrera/arquitectura" target="_blank" rel="noopener" class="group relative h-56 rounded-2xl overflow-hidden bg-[#0d3d24] flex flex-col">
+        <img src="https://www.uteq.edu.ec/assets/images/front-pages/arquitectura_uteq_es.jpg" alt="Arquitectura — carrera UTEQ" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+        <span class="mt-auto relative z-10 p-4 text-white font-display font-bold text-sm leading-snug">Arquitectura</span>
+        <span class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-amber-400 text-[#0d3d24] flex items-center justify-center group-hover:bg-white transition-colors"><i class="fas fa-arrow-right text-xs"></i></span>
+      </a>
+      <a href="https://www.uteq.edu.ec/es/grado/carrera/educacion-basica" target="_blank" rel="noopener" class="group relative h-56 rounded-2xl overflow-hidden bg-[#0d3d24] flex flex-col">
+        <img src="https://www.uteq.edu.ec/assets/images/front-pages/educacion_basica_uteq_es.jpg" alt="Educación Básica — carrera UTEQ" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+        <span class="mt-auto relative z-10 p-4 text-white font-display font-bold text-sm leading-snug">Educación Básica</span>
         <span class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-amber-400 text-[#0d3d24] flex items-center justify-center group-hover:bg-white transition-colors"><i class="fas fa-arrow-right text-xs"></i></span>
       </a>
     </div>
@@ -368,40 +415,50 @@
     <div>
       <div class="flex items-end justify-between gap-4 mb-6">
         <div>
-          <span class="text-xs font-bold tracking-[0.12em] uppercase text-[#14603a]">Actualidad UTEQ</span>
+          <span class="text-xs font-bold tracking-[0.12em] uppercase text-[#14603a]">5 · Noticias — Actualidad UTEQ</span>
           <h2 class="font-display font-extrabold text-2xl mt-1.5">Noticias destacadas</h2>
         </div>
         <a href="https://www.uteq.edu.ec/es/comunicacion" target="_blank" rel="noopener" class="hidden sm:block shrink-0 text-[#14603a] font-semibold text-sm border-b-2 border-amber-400 pb-0.5">Ver todas →</a>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <a href="https://www.uteq.edu.ec/es/comunicacion" target="_blank" rel="noopener" class="group bg-white rounded-3xl overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <a href="https://www.uteq.edu.ec/es/comunicacion/noticia/estudiantes-hondurenos-investigacion-nutricion-indigena-uteq" target="_blank" rel="noopener" class="group bg-white rounded-3xl overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow">
           <div class="relative h-36 overflow-hidden">
-            <img src="assets/news_investigacion.png" alt="Investigación institucional" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-            <span class="absolute top-3 left-3 bg-amber-400 text-[#0d3d24] text-[9.5px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full">Institucional</span>
+            <img src="https://www.uteq.edu.ec/assets/images/news/pagina/portada-estudiantes-hondurenos-investigacion-nutricion-indigena-uteq.jpg" alt="Estudiantes hondureños en la UTEQ" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+            <span class="absolute top-3 left-3 bg-amber-400 text-[#0d3d24] text-[9.5px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full">Investigación</span>
           </div>
           <div class="p-4">
-            <h3 class="font-display font-bold text-[13.5px] leading-snug group-hover:text-[#14603a] transition-colors">UTEQ impulsa proyectos de investigación para el desarrollo sostenible</h3>
-            <time class="block mt-2.5 text-[11px] text-gray-500"><i class="far fa-calendar mr-1.5"></i>20 jun 2026</time>
+            <h3 class="font-display font-bold text-[13.5px] leading-snug group-hover:text-[#14603a] transition-colors">UTEQ fortalece su internacionalización: estudiantes hondureños investigan nutrición indígena</h3>
+            <time class="block mt-2.5 text-[11px] text-gray-500"><i class="far fa-calendar mr-1.5"></i>6 ago 2026</time>
           </div>
         </a>
-        <a href="https://www.uteq.edu.ec/es/comunicacion" target="_blank" rel="noopener" class="group bg-white rounded-3xl overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow">
+        <a href="https://www.uteq.edu.ec/es/comunicacion/noticia/uteq-inicia-proyecto-internacional-etalent" target="_blank" rel="noopener" class="group bg-white rounded-3xl overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow">
           <div class="relative h-36 overflow-hidden">
-            <img src="assets/news_congreso.png" alt="Congreso internacional" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-            <span class="absolute top-3 left-3 bg-amber-400 text-[#0d3d24] text-[9.5px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full">Académico</span>
+            <img src="https://www.uteq.edu.ec/assets/images/news/pagina/portada-uteq-proyecto-etalent.jpg" alt="Proyecto E-TALENT UTEQ" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+            <span class="absolute top-3 left-3 bg-amber-400 text-[#0d3d24] text-[9.5px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full">Cooperación Internacional</span>
           </div>
           <div class="p-4">
-            <h3 class="font-display font-bold text-[13.5px] leading-snug group-hover:text-[#14603a] transition-colors">Estudiantes de la UTEQ participan en congreso internacional</h3>
-            <time class="block mt-2.5 text-[11px] text-gray-500"><i class="far fa-calendar mr-1.5"></i>18 jun 2026</time>
+            <h3 class="font-display font-bold text-[13.5px] leading-snug group-hover:text-[#14603a] transition-colors">UTEQ inicia el proyecto europeo E-TALENT para fortalecer competencias docentes</h3>
+            <time class="block mt-2.5 text-[11px] text-gray-500"><i class="far fa-calendar mr-1.5"></i>22 jul 2026</time>
           </div>
         </a>
-        <a href="https://www.uteq.edu.ec/es/comunicacion" target="_blank" rel="noopener" class="group bg-white rounded-3xl overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow">
+        <a href="https://www.uteq.edu.ec/es/comunicacion/noticia/apertura-de-matriculas-para-nivelacion-2025-2026-spa" target="_blank" rel="noopener" class="group bg-white rounded-3xl overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow">
           <div class="relative h-36 overflow-hidden">
-            <img src="assets/news_matricula.png" alt="Proceso de matrícula" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+            <img src="https://www.uteq.edu.ec/assets/images/news/pagina/apertura-de-matriculas-para-nivelacion-2025-2026-spa-portada-uteq.jpg" alt="Apertura de matrículas UTEQ" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
             <span class="absolute top-3 left-3 bg-amber-400 text-[#0d3d24] text-[9.5px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full">Comunicado</span>
           </div>
           <div class="p-4">
-            <h3 class="font-display font-bold text-[13.5px] leading-snug group-hover:text-[#14603a] transition-colors">Información sobre el proceso de matrícula ordinaria 2026-2</h3>
-            <time class="block mt-2.5 text-[11px] text-gray-500"><i class="far fa-calendar mr-1.5"></i>15 jun 2026</time>
+            <h3 class="font-display font-bold text-[13.5px] leading-snug group-hover:text-[#14603a] transition-colors">Apertura de matrículas para Nivelación 2025-2026 SPA</h3>
+            <time class="block mt-2.5 text-[11px] text-gray-500"><i class="far fa-calendar mr-1.5"></i>14 oct 2025</time>
+          </div>
+        </a>
+        <a href="https://www.uteq.edu.ec/es/comunicacion/noticia/emotiva-sesion-solemne-por-el-41-aniversario-de-la-uteq" target="_blank" rel="noopener" class="group bg-white rounded-3xl overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow">
+          <div class="relative h-36 overflow-hidden">
+            <img src="https://www.uteq.edu.ec/assets/images/news/pagina/emotiva-sesion-solemne-por-el-41-aniversario-de-la-uteq-portada-uteq.jpg" alt="41.º aniversario de la UTEQ" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+            <span class="absolute top-3 left-3 bg-amber-400 text-[#0d3d24] text-[9.5px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full">Institucional</span>
+          </div>
+          <div class="p-4">
+            <h3 class="font-display font-bold text-[13.5px] leading-snug group-hover:text-[#14603a] transition-colors">Emotiva sesión solemne por el 41.º aniversario de la UTEQ</h3>
+            <time class="block mt-2.5 text-[11px] text-gray-500"><i class="far fa-calendar mr-1.5"></i>6 feb 2025</time>
           </div>
         </a>
       </div>
@@ -409,7 +466,7 @@
 
     <div id="agenda">
       <div class="flex items-end justify-between gap-4 mb-6">
-        <h2 class="font-display font-extrabold text-2xl">Agenda</h2>
+        <h2 class="font-display font-extrabold text-2xl">Próximas fechas</h2>
         <button data-info="agenda-completa" class="shrink-0 text-[#14603a] font-semibold text-sm border-b-2 border-amber-400 pb-0.5">Ver calendario →</button>
       </div>
       <div class="bg-white rounded-2xl p-4 border border-gray-200 mb-4">
@@ -434,8 +491,11 @@
 
 <!-- ================= INVESTIGACIÓN / VIDA UNIVERSITARIA ================= -->
 <section id="investigacion" class="py-16">
-  <div class="max-w-7xl mx-auto px-4 grid sm:grid-cols-2 gap-5">
-    <div class="relative rounded-3xl overflow-hidden min-h-[280px] flex flex-col justify-end p-7" style="background-image:url('https://www.uteq.edu.ec/assets/images/front-pages/imagen_historia_uteq_es.jpg');background-size:cover;background-position:center;">
+  <div class="max-w-7xl mx-auto px-4">
+    <span class="text-xs font-bold tracking-[0.12em] uppercase text-[#14603a]">4 · Investigación</span>
+  </div>
+  <div class="max-w-7xl mx-auto px-4 grid sm:grid-cols-2 gap-5 mt-3">
+    <div class="relative rounded-3xl overflow-hidden min-h-[280px] flex flex-col justify-end p-7" style="background-image:url('https://www.uteq.edu.ec/assets/images/front-pages/imagen_investigacion_uteq_es.jpg');background-size:cover;background-position:center;">
       <div class="absolute inset-0 bg-gradient-to-t from-[#0d3d24]/95 via-[#0d3d24]/50 to-[#0d3d24]/10"></div>
       <div class="relative z-10 text-white">
         <h3 class="font-display font-extrabold text-xl mb-1.5">Investigación</h3>
@@ -462,7 +522,7 @@
 <!-- ================= VINCULACIÓN ================= -->
 <section id="vinculacion" class="py-16 bg-emerald-50/50">
   <div class="max-w-7xl mx-auto px-4">
-    <span class="text-xs font-bold tracking-[0.12em] uppercase text-[#14603a]">Vinculación con la sociedad</span>
+    <span class="text-xs font-bold tracking-[0.12em] uppercase text-[#14603a]">4 · Investigación — Vinculación con la sociedad</span>
     <h2 class="font-display font-extrabold text-2xl sm:text-3xl mt-1.5 mb-2">Convenios, trámites y seguimiento</h2>
     <p class="text-gray-500 mb-6 max-w-xl">121 convenios activos conectan a la UTEQ con la comunidad, instituciones y empresas de la región.</p>
     <div class="rounded-2xl overflow-hidden relative isolate min-h-[150px] flex items-center px-8 mb-6" style="background-image:url('https://www.uteq.edu.ec/assets/images/sliders/linkage/img-sld-9-00001.jpg');background-size:cover;background-position:center;">
@@ -484,7 +544,7 @@
 <!-- ================= BIENESTAR UNIVERSITARIO ================= -->
 <section id="bienestar" class="py-16">
   <div class="max-w-7xl mx-auto px-4">
-    <span class="text-xs font-bold tracking-[0.12em] uppercase text-[#14603a]">Bienestar Universitario</span>
+    <span class="text-xs font-bold tracking-[0.12em] uppercase text-[#14603a]">3 · Estudiantes — Bienestar Universitario</span>
     <h2 class="font-display font-extrabold text-2xl sm:text-3xl mt-1.5 mb-6">Servicios para la comunidad UTEQ</h2>
     <div class="rounded-2xl overflow-hidden relative isolate min-h-[150px] flex items-center px-8 mb-6" style="background-image:url('https://www.uteq.edu.ec/assets/img/servicios-universitarios-uteq-es.webp');background-size:cover;background-position:center;">
       <div class="absolute inset-0 bg-gradient-to-r from-[#0d3d24]/90 to-[#14603a]/50 -z-10"></div>
@@ -504,7 +564,7 @@
 <!-- ================= TRANSPARENCIA ================= -->
 <section id="transparencia" class="py-16 bg-emerald-50/50">
   <div class="max-w-7xl mx-auto px-4">
-    <span class="text-xs font-bold tracking-[0.12em] uppercase text-[#14603a]">Transparencia</span>
+    <span class="text-xs font-bold tracking-[0.12em] uppercase text-[#14603a]">6 · Contacto — Transparencia</span>
     <h2 class="font-display font-extrabold text-2xl sm:text-3xl mt-1.5 mb-2">Acceso a la información pública</h2>
     <p class="text-gray-500 mb-6 max-w-xl">Ley Orgánica de Transparencia y Acceso a la Información Pública (LOTAIP) y rendición de cuentas.</p>
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -517,16 +577,19 @@
 
 <!-- ================= ADMISIÓN CTA ================= -->
 <section id="admision" class="py-16">
+  <div class="max-w-7xl mx-auto px-4 mb-3">
+    <span class="text-xs font-bold tracking-[0.12em] uppercase text-[#14603a]">2 · Admisión</span>
+  </div>
   <div class="max-w-7xl mx-auto px-4">
     <div class="relative rounded-[2rem] overflow-hidden">
-      <div class="absolute inset-0 bg-cover bg-center scale-110 blur-[3px]" style="background-image:url('https://www.uteq.edu.ec/assets/images/front-pages/imagen_uteq_es.jpg')"></div>
+      <div class="absolute inset-0 bg-cover bg-center scale-110 blur-[3px]" style="background-image:url('https://www.uteq.edu.ec/assets/images/front-pages/imagen_admision_uteq_es.jpg')"></div>
       <div class="absolute inset-0 bg-gradient-to-r from-[#0d3d24]/95 to-[#14603a]/80"></div>
       <div class="relative z-10 p-10 sm:p-14 flex flex-wrap items-center justify-between gap-8 text-white">
         <div>
           <h2 class="font-display font-extrabold text-2xl sm:text-3xl max-w-md leading-tight">¿Listo para ser parte de la UTEQ?</h2>
           <p class="mt-2 text-emerald-50/90 max-w-lg">Revisa los requisitos, fechas clave del proceso de admisión y postúlate en línea en pocos minutos.</p>
         </div>
-        <a href="#admision" class="bg-amber-400 hover:bg-amber-300 text-[#0d3d24] font-bold px-8 py-4 rounded-full transition-transform hover:-translate-y-0.5 shadow-lg shadow-black/25">Ir a admisiones</a>
+        <a href="https://www.uteq.edu.ec/es/admision" target="_blank" rel="noopener" class="bg-amber-400 hover:bg-amber-300 text-[#0d3d24] font-bold px-8 py-4 rounded-full transition-transform hover:-translate-y-0.5 shadow-lg shadow-black/25">Postúlate ahora</a>
       </div>
     </div>
   </div>
@@ -551,7 +614,7 @@
 <!-- ================= CONTACTO ================= -->
 <section id="contacto" class="py-16 bg-emerald-50/60">
   <div class="max-w-7xl mx-auto px-4">
-    <span class="text-xs font-bold tracking-[0.12em] uppercase text-[#14603a]">Contacto</span>
+    <span class="text-xs font-bold tracking-[0.12em] uppercase text-[#14603a]">6 · Contacto</span>
     <h2 class="font-display font-extrabold text-2xl sm:text-3xl mt-1.5 mb-8">Escríbenos</h2>
     <div class="grid lg:grid-cols-2 gap-10">
       <ul class="divide-y divide-gray-200 bg-white rounded-2xl p-2">
@@ -572,7 +635,7 @@
 <!-- ================= FOOTER ================= -->
 <footer id="footer-sitemap" class="bg-[#0d3d24] text-emerald-100/80 pt-14 pb-8">
   <div class="max-w-7xl mx-auto px-4">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-8">
       <div>
         <div class="flex items-center text-white">
           <img src="https://www.uteq.edu.ec/assets/img/logo-grd_.webp" alt="UTEQ — Universidad Técnica Estatal de Quevedo" class="h-10 w-auto" onerror="this.onerror=null;this.src='assets/logo-uteq.svg';this.className='h-10 w-10 object-contain';">
@@ -584,10 +647,10 @@
           <a href="https://www.uteq.edu.ec/" target="_blank" rel="noopener" aria-label="Sitio oficial" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 grid place-items-center transition-colors"><i class="fas fa-globe text-sm"></i></a>
         </div>
       </div>
-      <div><h4 class="font-display font-bold text-white text-sm mb-4">La Universidad</h4><ul class="space-y-2.5 text-sm"><li><button data-info="autoridades" class="hover:text-white">Autoridades</button></li><li><button data-info="normativa" class="hover:text-white">Normativa</button></li><li><button data-info="planificacion" class="hover:text-white">Planificación</button></li></ul></div>
-      <div><h4 class="font-display font-bold text-white text-sm mb-4">Estudiantes</h4><ul class="space-y-2.5 text-sm"><li><a href="#admision" class="hover:text-white">Admisión</a></li><li><a href="#carreras" class="hover:text-white">Carreras</a></li><li><a href="https://www.uteq.edu.ec/es/posgrado" target="_blank" rel="noopener" class="hover:text-white">Posgrado</a></li><li><a href="#bienestar" class="hover:text-white">Bienestar universitario</a></li></ul></div>
-      <div><h4 class="font-display font-bold text-white text-sm mb-4">Institucional</h4><ul class="space-y-2.5 text-sm"><li><a href="#noticias" class="hover:text-white">Noticias</a></li><li><a href="#vinculacion" class="hover:text-white">Vinculación</a></li><li><a href="https://www.uteq.edu.ec/es/investigacion" target="_blank" rel="noopener" class="hover:text-white">Investigación</a></li><li><a href="https://www.uteq.edu.ec/es/posgrado" target="_blank" rel="noopener" class="hover:text-white">Posgrado</a></li></ul></div>
-      <div><h4 class="font-display font-bold text-white text-sm mb-4">Transparencia</h4><ul class="space-y-2.5 text-sm"><li><button data-info="lotaip" class="hover:text-white">LOTAIP</button></li><li><button data-info="rendicion" class="hover:text-white">Rendición de cuentas</button></li><li><a href="#contacto" class="hover:text-white">Contacto</a></li></ul></div>
+      <div><h4 class="font-display font-bold text-white text-sm mb-4">1–2 · Carreras y Admisión</h4><ul class="space-y-2.5 text-sm"><li><a href="#carreras" class="hover:text-white">Carreras de grado</a></li><li><a href="#admision" class="hover:text-white">Proceso de admisión</a></li><li><a href="https://www.uteq.edu.ec/es/posgrado" target="_blank" rel="noopener" class="hover:text-white">Posgrado</a></li><li><a href="https://www.uteq.edu.ec/es/admision" target="_blank" rel="noopener" class="hover:text-white">Postúlate ahora</a></li></ul></div>
+      <div><h4 class="font-display font-bold text-white text-sm mb-4">3 · Estudiantes</h4><ul class="space-y-2.5 text-sm"><li><a href="https://sga.uteq.edu.ec/" target="_blank" rel="noopener" class="hover:text-white">Aula Virtual (SGA)</a></li><li><a href="https://biblioteca.uteq.edu.ec/" target="_blank" rel="noopener" class="hover:text-white">Biblioteca</a></li><li><a href="#bienestar" class="hover:text-white">Bienestar universitario</a></li><li><button data-info="ayudas" class="hover:text-white">Becas y ayudas</button></li></ul></div>
+      <div><h4 class="font-display font-bold text-white text-sm mb-4">4–5 · Investigación y Noticias</h4><ul class="space-y-2.5 text-sm"><li><a href="#investigacion" class="hover:text-white">Producción científica</a></li><li><a href="#vinculacion" class="hover:text-white">Vinculación y convenios</a></li><li><a href="#noticias" class="hover:text-white">Noticias</a></li><li><a href="#agenda" class="hover:text-white">Próximas fechas</a></li></ul></div>
+      <div><h4 class="font-display font-bold text-white text-sm mb-4">6 · Contacto e institucional</h4><ul class="space-y-2.5 text-sm"><li><a href="#contacto" class="hover:text-white">Escríbenos</a></li><li><button data-info="autoridades" class="hover:text-white">Autoridades</button></li><li><button data-info="identidad" class="hover:text-white">Identidad corporativa</button></li><li><button data-info="lotaip" class="hover:text-white">LOTAIP</button></li><li><button data-info="rendicion" class="hover:text-white">Rendición de cuentas</button></li></ul></div>
     </div>
     <div class="border-t border-white/10 mt-10 pt-6 flex flex-wrap justify-between gap-3 text-xs">
       <span>© 2026 Universidad Técnica Estatal de Quevedo — Prototipo de portada, propuesta de reorganización de menú.</span>
