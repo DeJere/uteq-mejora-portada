@@ -174,7 +174,7 @@
       ccIdx = (ccIdx + 1) % ccSlides.length;
       ccSlides.forEach(function (s, i) { s.classList.toggle("active", i === ccIdx); });
       ccDots.forEach(function (d, i) { d.classList.toggle("active", i === ccIdx); });
-    }, 3800 + ci * 240); // pequeño desfase para que no cambien todas a la vez
+    }, 6500 + ci * 260); // lento a propósito: da tiempo a que la foto cargue antes de cambiar
   });
 
   /* ---------- agenda: mini calendario ---------- */
